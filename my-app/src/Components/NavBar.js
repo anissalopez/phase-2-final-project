@@ -11,7 +11,7 @@ function NavBar(){
 
     return(
         <nav className="nav">
-        <NavLink exact to="/" style={(state) => navStyle(state)}>Home</NavLink>
+        <NavLink exact="true" to="/" style={(state) => navStyle(state)}>Home</NavLink>
         <NavLink to="/AddHabit" >Add Habit</NavLink>
         <NavLink to="/WeekData" >Tracking</NavLink>
         </nav>

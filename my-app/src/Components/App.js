@@ -7,7 +7,9 @@ import WeekData from "./WeekData";
 
 
 function App() {
+  
   const [habits, setHabits] = useState([]);
+
 
   useEffect(()=> {
       fetch('http://localhost:3000/habits')
@@ -17,33 +19,36 @@ function App() {
   }, []);
 
   function updateHabitList(newHabit){
-    const newHabits = [...habits, newHabit]
-    setHabits(newHabits)
-  }
+    const newHabits = [...habits, newHabit];
+    setHabits(newHabits);
+  };
 
 
-  const [habitsArray, setArray] = useState([])
 
-  function trackHabit(habit){
+function updateWeekDay(updatedHabit){
 
-      const habits =[
-          ...habitsArray, 
-          habit
-      ]
+  const newHabitArray = habits.map((habit) => {
+    if(habit.id === updatedHabit.id){
+      return {
+        ...habit, ...updatedHabit
+      }
+    }
+    else {
+        return habit
+      }
+  });
 
-     setArray(habits)
-     console.log(habitsArray)
+  setHabits(newHabitArray);
+};
 
-
-  }
 
   return (
     <div className="App">
       <NavBar />
         <Routes>
           <Route path="/AddHabit" element={<HabitForm habits={habits} updateHabitList={updateHabitList}/>} />
-          <Route exact path="/WeekData" element ={<WeekData habits={habits} habitsArray={habitsArray}/>} />
-          <Route exact path="/" element ={<HabitContainer trackHabit={trackHabit} habits={habits}/>} />
+          <Route exact path="/WeekData" element ={<WeekData habits={habits}/>} />
+          <Route exact path="/" element ={<HabitContainer updateWeekDay={updateWeekDay} habits={habits}/>} />
         </Routes>
     </div>
   );

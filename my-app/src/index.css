@@ -19,14 +19,21 @@ body {
 }
 
 
-.button {
+.buttonDiv {
+  
   height: 30px;
   width: 30px;
+  padding: 20px
 }
 
 .container .buttonDiv{
   margin: auto;
   
+}
+
+button{
+  height: 30px;
+  width: 30px;
 }
 
 .habitContainer {
