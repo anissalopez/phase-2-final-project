@@ -2,7 +2,7 @@ body {
   margin: 0;
   font-family: Verdana, sans-serif;
   background: #8facc0; 
-  display       : grid;
+  display: grid;
   place-content : center;
  
 }
@@ -102,3 +102,21 @@ input:hover {
   background: #b3aca7;
   color: #e2dedb;
 }
+
+.circle{
+  width: 70px;
+  padding: 50px;
+  height: 70px;
+  border-radius: 50%;
+  background-color: red;
+  justify-content: center;
+ 
+
+}
+
+
+
+
+
+
+
