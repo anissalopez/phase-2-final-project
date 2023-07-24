@@ -1,0 +1,97 @@
+body {
+  margin: 0;
+  font-family: Verdana, sans-serif;
+  background: #8facc0; 
+  display       : grid;
+  place-content : center;
+ 
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: 80px;
+  background: #303841; 
+  grid-gap: 50px;
+  text-align: left;
+  color: white;
+
+}
+
+
+.button {
+  height: 30px;
+  width: 30px;
+}
+
+.container .buttonDiv{
+  margin: auto;
+  
+}
+
+.habitContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  background:#eeeeee; 
+  grid-gap: 20px;
+  text-align: center;
+}
+
+.checked{
+  height: 30px;
+  width: 30px;
+  background-color: green;
+}
+
+header{
+font-size: larger;
+text-align: center;
+padding: 35px;
+color: white;
+}
+
+.nav{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  place-content: center;
+}
+
+.parent {
+  display: table;
+  width: 100%;
+}
+
+
+.form {
+  display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  padding: 200px;
+}
+
+
+input[type=text] {
+  width: 100%;
+  font-size: 30px;
+  padding: 10px;
+  text-align: center;
+}
+
+input[type=submit]{
+  width: 50%;
+  font-size: 20px;
+  background-color: black;
+  color: white;
+  padding: 10px;
+  text-align: center;
+}
+
+.submit{
+  padding: 10px;
+}
+
+input:hover {
+  background: #b3aca7;
+  color: #e2dedb;
+}
