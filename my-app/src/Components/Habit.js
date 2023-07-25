@@ -1,4 +1,9 @@
 import React, {useState} from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrashAlt, faSquareCheck } from '@fortawesome/free-solid-svg-icons'
+
+
+
 
 
 function Habit({ habit, updateWeekDay, weekDays}){
@@ -19,16 +24,16 @@ function Habit({ habit, updateWeekDay, weekDays}){
 
 
  const weekButtons = weekDays.map((day) => {return(
-    <div key={day} className ="col">
-        <button key={day} className={habit[day] ? "checked" : null} onClick={()=>handleClick(day)}>{habit[day] ? "✔️" : null}
-        </button>
-    </div>)});
+        <td><button key={day} className="btn btn-primary" onClick={()=>handleClick(day)}>{habit[day] ? <FontAwesomeIcon icon={faSquareCheck} /> : null}</button>
+        </td>
+        )});
 
     return (
-        <div className="row">
-            <p className="col">{habit.habit}</p> 
+            <tr>
+            <td>{habit.habit}</td> 
             {weekButtons}
-         </div>
+            <td><button className="btn btn-danger"><FontAwesomeIcon icon={faTrashAlt}/></button></td>
+            </tr>    
     )
 }
 
