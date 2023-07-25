@@ -10,7 +10,7 @@ function HabitContainer( {habits, updateWeekDay}){
     const weekDays= weekday.map(day => <p className="col" key={day}>{day}</p> );
 
     return(
-        <div>
+        <div class="container">
         <Header />
             <div className="row">
             <p className="col">Habits</p>

@@ -13,11 +13,10 @@ function WeekData({ habits}){
 
     const habitData = habits.map((habit) => {
         const percent = `${(habitCount[habit.habit]/7 * 100).toFixed(2)}%`;
-
-    return (
-            <div className="circle" key={habit.habit}>
-                <p>{habit.habit}</p>
-                <p >{habitCount[habit.habit] > 0 ?  percent : `0%`} </p>
+        return (
+            <div className="row"key={habit.habit}>
+                <p className="col">{habit.habit}</p>
+                <p className="col">{habitCount[habit.habit] > 0 ?  percent : `0%`} </p>
             </div>
            
     )
@@ -25,7 +24,7 @@ function WeekData({ habits}){
 
 
     return (
-        <div className="data">{habitData}</div>
+        <div>{habitData}</div>
     )
 }
 
