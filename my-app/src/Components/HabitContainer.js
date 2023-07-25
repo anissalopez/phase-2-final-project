@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import Habit from "./Habit";
 import Header from "./Header";
-import {weekday} from "../weekdata"
+import { weekday } from "../weekdata";
+import { Container } from "./Container.style"
 
 function HabitContainer( {habits, updateWeekDay}){
 
@@ -9,10 +10,10 @@ function HabitContainer( {habits, updateWeekDay}){
  
 
     return(
-        <div>
+        <Container>
         <Header />
             {dailyHabits}
-        </div>
+        </Container>
     )
 }
 

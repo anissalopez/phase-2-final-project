@@ -4,6 +4,7 @@ import React, {useState, useEffect} from "react";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import WeekData from "./WeekData";
+import {Container} from "./Container.style"
 
 
 function App() {
@@ -43,14 +44,14 @@ function updateWeekDay(updatedHabit){
 
 
   return (
-    <div className="App">
+      <Container>
       <NavBar />
         <Routes>
           <Route path="/AddHabit" element={<HabitForm habits={habits} updateHabitList={updateHabitList}/>} />
           <Route exact path="/WeekData" element ={<WeekData habits={habits}/>} />
           <Route exact path="/" element ={<HabitContainer updateWeekDay={updateWeekDay} habits={habits}/>} />
         </Routes>
-    </div>
+      </Container>
   );
 }
 

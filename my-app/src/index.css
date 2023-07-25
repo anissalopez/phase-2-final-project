@@ -1,22 +1,4 @@
-body {
-  margin: 0;
-  font-family: Verdana, sans-serif;
-  background: #8facc0; 
-  display: grid;
-  place-content : center;
- 
-}
 
-.container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-rows: 80px;
-  background: #303841; 
-  grid-gap: 50px;
-  text-align: left;
-  color: white;
-
-}
 
 
 .buttonDiv {

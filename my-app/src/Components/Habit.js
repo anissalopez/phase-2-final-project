@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { HabitContainer } from "./Container.style"
 
 function Habit({ habit, updateWeekDay, weekDays}){
 
@@ -24,10 +25,10 @@ function Habit({ habit, updateWeekDay, weekDays}){
     </div>)});
 
     return (
-        <div className="container">
+        <HabitContainer>
            <p>{habit.habit}</p> 
            {weekButtons}
-        </div>
+        </HabitContainer>
 
     )
 }
