@@ -1,4 +1,22 @@
+td {
+  text-align: center;
+  width: 90px;
+}
 
+tr{
+  width: 160px;
+  text-align:center;
+}
+
+th{
+  text-align:center;
+  width: 90px;
+}
+
+.custom{
+  width: 39.8px;
+  height: 37.81px;
+}
 
 
 

@@ -5,12 +5,9 @@ import { Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import WeekData from "./WeekData";
 
-
-
 function App() {
-  
-  const [habits, setHabits] = useState([]);
 
+  const [habits, setHabits] = useState([]);
 
   useEffect(()=> {
       fetch('http://localhost:3000/habits')
@@ -24,23 +21,24 @@ function App() {
     setHabits(newHabits);
   };
 
+  function removeHabit(habitID){
+    const newHabits = habits.filter((habit) => habit.id != habitID);
+    setHabits(newHabits);
+  };
 
-
-function updateWeekDay(updatedHabit){
-
-  const newHabitArray = habits.map((habit) => {
-    if(habit.id === updatedHabit.id){
-      return {
+  function updateWeekDay(updatedHabit){
+    const newHabitArray = habits.map((habit) => {
+      if(habit.id === updatedHabit.id){
+        return {
         ...habit, ...updatedHabit
-      }
-    }
-    else {
-        return habit
-      }
+        };
+     }
+      else {
+        return habit;
+      };
   });
-
   setHabits(newHabitArray);
-};
+  };
 
 
   return (
@@ -49,11 +47,11 @@ function updateWeekDay(updatedHabit){
         <Routes>
           <Route path="/AddHabit" element={<HabitForm habits={habits} updateHabitList={updateHabitList}/>} />
           <Route exact path="/WeekData" element ={<WeekData habits={habits}/>} />
-          <Route exact path="/" element ={<HabitContainer updateWeekDay={updateWeekDay} habits={habits}/>} />
+          <Route exact path="/" element ={<HabitContainer removeHabit={removeHabit} updateWeekDay={updateWeekDay} habits={habits}/>} />
         </Routes>
         </div>
   
   );
-}
+};
 
 export default App;

@@ -1,12 +1,8 @@
-import React, {useState} from "react";
+import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faSquareCheck } from '@fortawesome/free-solid-svg-icons'
+import { faTrashAlt, faCheck, faSquare} from '@fortawesome/free-solid-svg-icons';
 
-
-
-
-
-function Habit({ habit, updateWeekDay, weekDays}){
+function Habit({ habit, updateWeekDay, weekDays, removeHabit}){
 
     function handleClick(day){
         fetch(`http://localhost:3000/habits/${habit.id}`, {
@@ -22,17 +18,26 @@ function Habit({ habit, updateWeekDay, weekDays}){
         .catch(error => console.log(error))
     };
 
+    function handleDelete(){
+        fetch(`http://localhost:3000/habits/${habit.id}`, {
+            method: 'DELETE',
+        })
+        .then(resp => resp.json())
+        .then(() => removeHabit(habit.id))
+    }
 
- const weekButtons = weekDays.map((day) => {return(
-        <td><button key={day} className="btn btn-primary" onClick={()=>handleClick(day)}>{habit[day] ? <FontAwesomeIcon icon={faSquareCheck} /> : null}</button>
-        </td>
-        )});
-
+    const weekButtons = weekDays.map((day) => {
+        const completed = habit[day]? <FontAwesomeIcon icon={faCheck} /> : null
+            return (<td key={day}>
+                <button className={habit[day] ? "btn btn-success" : "btn btn-outline-primary custom"} onClick={()=>handleClick(day)}>{completed}</button>
+                    </td>)
+    });
+     
     return (
             <tr>
-            <td>{habit.habit}</td> 
-            {weekButtons}
-            <td><button className="btn btn-danger"><FontAwesomeIcon icon={faTrashAlt}/></button></td>
+            <th scope="row">{habit.habit}</th> 
+             {weekButtons}
+            <td><button onClick={handleDelete} className="btn btn-danger"><FontAwesomeIcon icon={faTrashAlt}/></button></td>
             </tr>    
     )
 }
