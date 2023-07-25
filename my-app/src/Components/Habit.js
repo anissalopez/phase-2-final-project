@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import { HabitContainer } from "./Container.style"
+
 
 function Habit({ habit, updateWeekDay, weekDays}){
 
@@ -19,17 +19,16 @@ function Habit({ habit, updateWeekDay, weekDays}){
 
 
  const weekButtons = weekDays.map((day) => {return(
-    <div key={day} className ="buttonDiv">
+    <div key={day} className ="col">
         <button key={day} className={habit[day] ? "checked" : null} onClick={()=>handleClick(day)}>{habit[day] ? "✔️" : null}
         </button>
     </div>)});
 
     return (
-        <HabitContainer>
-           <p>{habit.habit}</p> 
-           {weekButtons}
-        </HabitContainer>
-
+        <div className="row">
+            <p className="col">{habit.habit}</p> 
+            {weekButtons}
+         </div>
     )
 }
 
