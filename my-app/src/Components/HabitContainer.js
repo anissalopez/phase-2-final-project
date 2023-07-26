@@ -37,25 +37,34 @@ function HabitContainer( {habits, updateWeekDay, removeHabit}){
             <h2 className="dateHeader">{format(activeDay, dateFormat)}</h2> 
       );
     };
-   
-    const renderWeekDays = (activeDay) => {
+  
+
+     
+    const renderWeekDays = () => {
         let currentDate = activeDay
+
+        console.log(currentDate)
          const startDate = startOfWeek(activeDay, { weekStartsOn: 1 });
          const endDate = lastDayOfWeek(activeDay, { weekStartsOn: 1 });
+
    
+         console.log(format(currentDate, "d"))
          const week =[];
          
          while(startDate <= endDate){
            for(let i = 0; i < 7; i++){
+
+      
                week.push(<th>{format(currentDate, "d")}</th>);
                currentDate = addDays(currentDate, 1)
            }
          }
-         return {week}
+         console.log(week)
+         return <>{week}</>
          }
    
+renderWeekDays()
 
-    
  
     const tableFooter = () => {
       return (
@@ -81,13 +90,12 @@ function HabitContainer( {habits, updateWeekDay, removeHabit}){
                 <thead>
                     <tr>
                         <th>Habits</th>
-                        {renderWeekDays(activeDay)}
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     {dailyHabits}
-                    <trow>{tableFooter()}</trow>
+                    <tr>{tableFooter()}</tr>
                 </tbody>
                
                 </Table>
