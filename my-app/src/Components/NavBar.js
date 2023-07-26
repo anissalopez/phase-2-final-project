@@ -13,9 +13,8 @@ function NavBar() {
           <Nav className="me-auto">
             <NavDropdown title="More Options" id="basic-nav-dropdown">
               <NavDropdown.Item href="/AddHabit">Add Habit</NavDropdown.Item>
-              <NavDropdown.Item href="/WeekData">
-                Weekly Data
-              </NavDropdown.Item>
+              <NavDropdown.Item href="/WeekData">Weekly Data</NavDropdown.Item>
+              <NavDropdown.Item href="/Calendar">Monthly Data</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>

@@ -4,6 +4,8 @@ import React, {useState, useEffect} from "react";
 import { Routes, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import WeekData from "./WeekData";
+import Cal from "./Calendar"
+
 
 function App() {
 
@@ -45,6 +47,7 @@ function App() {
      <div className="container">
       <NavBar />
         <Routes>
+          <Route path="/Calendar" element={<Cal/>}></Route>
           <Route path="/AddHabit" element={<HabitForm habits={habits} updateHabitList={updateHabitList}/>} />
           <Route exact path="/WeekData" element ={<WeekData habits={habits}/>} />
           <Route exact path="/" element ={<HabitContainer removeHabit={removeHabit} updateWeekDay={updateWeekDay} habits={habits}/>} />

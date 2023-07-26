@@ -1,17 +1,25 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faCheck} from '@fortawesome/free-solid-svg-icons';
+import { format } from "date-fns";
 
 function Habit({ habit, updateWeekDay, weekDays, removeHabit}){
 
-    function handleClick(day){
+    const dateFormat = "MMM dd yyyy";
+    const date = format(new Date(), dateFormat)
+
+
+
+    function handleClick(e){
+            console.log(e.target.parentNode.parentNode.id)
+        
         fetch(`http://localhost:3000/habits/${habit.id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
                 "accept": "application/json"
             },
-            body: JSON.stringify({[day]: !habit[day]})
+            body: JSON.stringify({[date]: true})
         })
         .then(resp => resp.json())
         .then(data => updateWeekDay(data))
@@ -30,9 +38,8 @@ function Habit({ habit, updateWeekDay, weekDays, removeHabit}){
         const completed = habit[day]? <FontAwesomeIcon icon={faCheck} /> : null
             return(
                 <td key={day}>
-                    <button className={habit[day] ? "btn btn-success" : "btn btn-outline-primary custom"} onClick={()=>handleClick(day)}>
+                    <input type="button"  className={habit[day] ? "btn btn-success" : "btn btn-outline-primary custom"} onClick={handleClick} />
                         {completed}
-                    </button>
                 </td>)
     });
      

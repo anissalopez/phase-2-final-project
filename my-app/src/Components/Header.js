@@ -5,9 +5,7 @@ function Header() {
 
   return (
     <div>
-
       <h1 className="text-center">Habit Tracker</h1>
- 
     </div>
   );
 }
