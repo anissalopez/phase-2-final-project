@@ -5,69 +5,58 @@ import { weekday } from "../weekdata";
 import { Table } from "react-bootstrap";
 import {
   format,
-  subMonths,
-  addMonths,
   startOfWeek,
   addDays,
-  isSameDay,
   lastDayOfWeek,
-  getWeek,
   addWeeks,
   subWeeks
 } from "date-fns";
-import { faScaleUnbalanced } from "@fortawesome/free-solid-svg-icons";
+
 
 
 
 
 function HabitContainer( {habits, updateWeekDay, removeHabit}){
 
-    const [currentMonth, setCurrentMonth] = useState(new Date());
-    const [weekArray, setWeek] = useState([]);
-
-
-
+    const [activeDay, setActiveDay] = useState(new Date());
+  
     const changeWeekHandle = (btnType) => {
       if (btnType === "prev") {
-        setCurrentMonth(subWeeks(currentMonth, 1));
-        
+        setActiveDay(subWeeks(activeDay, 1));
+
       }
       if (btnType === "next") {
-        setCurrentMonth(addWeeks(currentMonth, 1));
+        setActiveDay(addWeeks(activeDay, 1));
       }
     };
-  
-  
+
+ 
   const dateHeader = () => {
       const dateFormat = "MMM yyyy";
       return (
-            <h2 className="dateHeader">{format(currentMonth, dateFormat)}</h2> 
+            <h2 className="dateHeader">{format(activeDay, dateFormat)}</h2> 
       );
     };
    
-    const renderCells = () => {
-      const startDate = startOfWeek(currentMonth, { weekStartsOn: 1 });
-      const endDate = lastDayOfWeek(currentMonth, { weekStartsOn: 1 });
-      const dateFormat = "d";
-      const rows = [];
-      let days = [];
-      let day = startDate;
-      let formattedDate = "";
-      while (day <= endDate) {
-        for (let i = 0; i < 7; i++) {
-          formattedDate = format(day, dateFormat);
-          days.push( <th key={formattedDate}>{formattedDate}</th>);
-          day = addDays(day, 1);
-        }
-    
-        rows.push(
-           <>{days}</>           
-        );
-        days = [];
-      }
-      return <>{rows}</>;
-    };
+    const renderWeekDays = (activeDay) => {
+        let currentDate = activeDay
+         const startDate = startOfWeek(activeDay, { weekStartsOn: 1 });
+         const endDate = lastDayOfWeek(activeDay, { weekStartsOn: 1 });
+   
+         const week =[];
+         
+         while(startDate <= endDate){
+           for(let i = 0; i < 7; i++){
+               week.push(<th>{format(currentDate, "d")}</th>);
+               currentDate = addDays(currentDate, 1)
+           }
+         }
+         return {week}
+         }
+   
 
+    
+ 
     const tableFooter = () => {
       return (
            <>
@@ -82,7 +71,7 @@ function HabitContainer( {habits, updateWeekDay, removeHabit}){
     };
 
     const dailyHabits = habits.map((habit) => <Habit removeHabit={removeHabit} updateWeekDay={updateWeekDay} weekDays={weekday}  key={habit.id} habit={habit} />);
-    const weekDays= weekday.map(day => <th className="p-3"  key={day}>{day}</th>);
+  
 
     return(
         <div>
@@ -92,7 +81,7 @@ function HabitContainer( {habits, updateWeekDay, removeHabit}){
                 <thead>
                     <tr>
                         <th>Habits</th>
-                        {renderCells()}
+                        {renderWeekDays(activeDay)}
                         <th></th>
                     </tr>
                 </thead>
