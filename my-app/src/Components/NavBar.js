@@ -1,15 +1,27 @@
-import React from "react";
-import { NavLink } from "react-router-dom";
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import NavDropdown from 'react-bootstrap/NavDropdown';
 
-function NavBar(){
-
-    return(
-        <nav className="row">
-        <NavLink className="col" exact="true" to="/">Home</NavLink>
-        <NavLink className="col offset-3"to="/AddHabit" >Add Habit</NavLink>
-        <NavLink className="col offset-3"  to="/WeekData" >Tracking</NavLink>
-        </nav>
-    )
+function NavBar() {
+  return (
+    <Navbar expand="lg" className="bg-body-tertiary">
+      <Container>
+        <Navbar.Brand href="/">Habit Tracker App</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="me-auto">
+            <NavDropdown title="More Options" id="basic-nav-dropdown">
+              <NavDropdown.Item href="/AddHabit">Add Habit</NavDropdown.Item>
+              <NavDropdown.Item href="/WeekData">
+                Weekly Data
+              </NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
 }
 
 export default NavBar;

@@ -1,6 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrashAlt, faCheck, faSquare} from '@fortawesome/free-solid-svg-icons';
+import { faTrashAlt, faCheck} from '@fortawesome/free-solid-svg-icons';
 
 function Habit({ habit, updateWeekDay, weekDays, removeHabit}){
 
@@ -28,9 +28,12 @@ function Habit({ habit, updateWeekDay, weekDays, removeHabit}){
 
     const weekButtons = weekDays.map((day) => {
         const completed = habit[day]? <FontAwesomeIcon icon={faCheck} /> : null
-            return (<td key={day}>
-                <button className={habit[day] ? "btn btn-success" : "btn btn-outline-primary custom"} onClick={()=>handleClick(day)}>{completed}</button>
-                    </td>)
+            return(
+                <td key={day}>
+                    <button className={habit[day] ? "btn btn-success" : "btn btn-outline-primary custom"} onClick={()=>handleClick(day)}>
+                        {completed}
+                    </button>
+                </td>)
     });
      
     return (
