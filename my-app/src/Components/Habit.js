@@ -5,24 +5,27 @@ import { format } from "date-fns";
 
 function Habit({ habit, updateWeekDay, weekDays, removeHabit, refs}){
 
-    const [dates, setDates] = useState([new Date()])
-    const formattedDate = format((new Date()), "MM dd")
-    const currentDay = new Date()
-
-    console.log(dates)
-    
+    const currentDay = new Date();
+    const [completedDays, setComplete] = useState([])
 
     function handleClick(index){
+
+        console.log(refs.current[index].getDay())
+        console.log(currentDay.getDay())
+
         
-        if(refs.current[index] != formattedDate){
+        if(refs.current[index].getDay() > currentDay.getDay()){
            alert("please check off a habit for the correct date")
         }
 
 
-        const filteredDates = dates.filter((day) => day != currentDay)
+        const filteredDates = completedDays.filter((day) => {
+           return day != currentDay
+        })
     
+        console.log(filteredDates)
 
-        console.log(dates)
+   
       
             fetch(`http://localhost:3000/habits/${habit.id}`, {
             method: "PATCH",
@@ -30,7 +33,7 @@ function Habit({ habit, updateWeekDay, weekDays, removeHabit, refs}){
                 "content-type": "application/json",
                 "accept": "application/json"
             },
-            body: JSON.stringify({"dates": filteredDates})
+            body: JSON.stringify()
         })
         .then(resp => resp.json())
         .then(data => console.log(data))

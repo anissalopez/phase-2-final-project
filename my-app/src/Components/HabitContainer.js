@@ -25,7 +25,7 @@ function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeD
     let currentDay = startDate;
 
       for(let day = 0; day < 7; day++){
-        week.push(<th ref={() => itemRefs.current.push(format(addDays(currentDay, day), "MM dd"))} key={day}>{format(addDays(currentDay, day), "E")} {format(addDays(currentDay, day), "d")}</th>);
+        week.push(<th ref={() => itemRefs.current.push(addDays(currentDay, day))} key={day}>{format(addDays(currentDay, day), "E")} {format(addDays(currentDay, day), "d")}</th>);
       }
     return <>{week}</> 
   }
