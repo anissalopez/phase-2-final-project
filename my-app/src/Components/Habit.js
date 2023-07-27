@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faCheck} from '@fortawesome/free-solid-svg-icons';
 import { format } from "date-fns";
 
-function Habit({ habit, updateWeekDay, weekDays, removeHabit}){
+function Habit({ habit, updateWeekDay, weekDays, removeHabit, refs}){
+
+    
+console.log(refs.current)
+
 
     const dateFormat = "MMM dd yyyy";
     const date = format(new Date(), dateFormat)
@@ -11,7 +15,7 @@ function Habit({ habit, updateWeekDay, weekDays, removeHabit}){
 
 
     function handleClick(e){
-            console.log(e.target.parentNode.parentNode.id)
+            console.log(this)
         
         fetch(`http://localhost:3000/habits/${habit.id}`, {
             method: "PATCH",
@@ -48,7 +52,7 @@ function Habit({ habit, updateWeekDay, weekDays, removeHabit}){
             <th scope="row">{habit.habit}</th> 
              {weekButtons}
             <td><button onClick={handleDelete} className="btn btn-danger"><FontAwesomeIcon icon={faTrashAlt}/></button></td>
-            </tr>    
+            </tr>   
     )
 }
 
