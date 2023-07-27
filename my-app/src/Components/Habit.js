@@ -3,10 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
 import { format } from "date-fns";
 
-function Habit({ habit, updateWeekDay, weekDays, removeHabit, refs }) {
+function Habit({ habit, updateCompletedHabits, weekDays, removeHabit, refs }) {
 
   const currentDay = new Date();
   const [completedDays, setComplete] = useState([]);
+
 
 
 
@@ -44,8 +45,7 @@ function Habit({ habit, updateWeekDay, weekDays, removeHabit, refs }) {
           body: JSON.stringify(updateDays)
         })
           .then(resp => resp.json())
-          .then(data => console.log(data))
-          .catch(error => console.log(error));
+          .then((data) => {updateCompletedHabits(data)})
       }else{
         alert("You can not check off a future habit");
       }

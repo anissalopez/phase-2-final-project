@@ -5,7 +5,7 @@ import { weekday } from "../weekdata";
 import { Table } from "react-bootstrap";
 import {format, startOfWeek, addDays} from "date-fns";
 
-function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeDay, dateHeader}){
+function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeDay, dateHeader, updateCompletedHabits}){
 
   
 
@@ -32,7 +32,7 @@ function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeD
 
 
 
-    const dailyHabits = habits.map((habit) => <Habit refs={itemRefs} removeHabit={removeHabit} updateWeekDay={updateWeekDay} weekDays={weekday}  key={habit.id} habit={habit} />);
+    const dailyHabits = habits.map((habit) => <Habit updateCompletedHabits={updateCompletedHabits} refs={itemRefs} removeHabit={removeHabit} updateWeekDay={updateWeekDay} weekDays={weekday}  key={habit.id} habit={habit} />);
   
 
     return(

@@ -56,19 +56,10 @@ function App() {
     setHabits(newHabits);
   };
 
-  function updateWeekDay(updatedHabit){
-    const newHabitArray = habits.map((habit) => {
-      if(habit.id === updatedHabit.id){
-        return {
-        ...habit, ...updatedHabit
-        };
-     }
-      else {
-        return habit;
-      };
-  });
-  setHabits(newHabitArray);
+  function updateCompletedHabits(updatedHabit){
+    console.log(updatedHabit)
   };
+
 
 
   return (
@@ -78,7 +69,7 @@ function App() {
           <Route path="/Calendar" element={<Cal/>}></Route>
           <Route path="/AddHabit" element={<HabitForm habits={habits} updateHabitList={updateHabitList}/>} />
           <Route exact path="/WeekData" element ={<WeekData changeWeek={changeWeek} dateHeader={dateHeader} activeDay={activeDay} habits={habits}/>} />
-          <Route exact path="/" element ={<HabitContainer changeWeek={changeWeek} dateHeader={dateHeader} changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateWeekDay={updateWeekDay} habits={habits}/>} />
+          <Route exact path="/" element ={<HabitContainer changeWeek={changeWeek} dateHeader={dateHeader} changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateCompletedHabits={updateCompletedHabits} habits={habits}/>} />
         </Routes>
         </div>
   
