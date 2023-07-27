@@ -57,7 +57,18 @@ function App() {
   };
 
   function updateCompletedHabits(updatedHabit){
-    console.log(updatedHabit)
+    const newHabitArray = habits.map((habit) => {
+      if (habit.id === updatedHabit.id) {
+        return {
+          ...habit,
+          ...updatedHabit 
+        };
+      } else {
+        return habit;
+      }
+    });
+  
+    setHabits(newHabitArray);
   };
 
 

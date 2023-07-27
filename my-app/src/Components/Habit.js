@@ -6,35 +6,25 @@ import { format } from "date-fns";
 function Habit({ habit, updateCompletedHabits, weekDays, removeHabit, refs }) {
 
   const currentDay = new Date();
-  const [completedDays, setComplete] = useState([]);
-
-
 
 
   function handleClick(index) {
 
-    
-    const convertedDates = habit.dates.map((day) => {
-        try {
-          return format((new Date(day)), "MM dd")
-        } catch (error) {
-          console.error("Error parsing date:", day);
-          return null;
-        }
-      });
+    console.log(refs.current[index])
+    if(habit[refs.current[index]]){
+        alert("this habit has been completed!")
+    }
 
-    
 
-    
-  
-    if (convertedDates.includes(format((refs.current[index]), "MM dd"))) {
-      alert("You have already completed this habit for the selected day.");
-    } else {
-      if (refs.current[index].getDay() <= currentDay.getDay() && refs.current[index].getDay() > 0) {
+
+    if (refs.current[index].getDay() <= currentDay.getDay() && refs.current[index].getDay() > 0){
+        
+        
         const clickedDate = refs.current[index]
-        setComplete([...completedDays, clickedDate]);
+     
 
-        const updateDays = { dates: [...completedDays, clickedDate] };
+        const updateDays = {
+            [clickedDate]: true};
 
         fetch(`http://localhost:3000/habits/${habit.id}`, {
           method: "PATCH",
@@ -45,12 +35,18 @@ function Habit({ habit, updateCompletedHabits, weekDays, removeHabit, refs }) {
           body: JSON.stringify(updateDays)
         })
           .then(resp => resp.json())
-          .then((data) => {updateCompletedHabits(data)})
-      }else{
-        alert("You can not check off a future habit");
+          .then(data => updateCompletedHabits(data))
+      }
+
+      else{
+        alert("You can not complete a habit for a future day")
       }
     }
-  }
+
+    
+     
+  
+
 
   function handleDelete() {
     fetch(`http://localhost:3000/habits/${habit.id}`, {
@@ -60,17 +56,16 @@ function Habit({ habit, updateCompletedHabits, weekDays, removeHabit, refs }) {
       .then(() => removeHabit(habit.id))
   }
 
+
   const weekButtons = weekDays.map((day, index) => {
 
-    const date = refs.current[index];
-    const completedDate = date
-    const isCompleted = completedDays.includes(completedDate);
-   
-    const completed = isCompleted ? <FontAwesomeIcon icon={faCheck} /> : null
+
+    
+    const completed = habit[refs.current[index]] ? <FontAwesomeIcon icon={faCheck} /> : null
     return (
       <td key={day}>
-        <input type="button" className={isCompleted ? "btn btn-success" : "btn btn-outline-primary custom"} onClick={() => handleClick(index)} />
-        {completed}
+        <button className={habit[refs.current[index]] ? "btn btn-success" : "btn btn-outline-primary custom"} onClick={() => handleClick(index)}>{completed}</button>
+ 
       </td>)
   });
 
