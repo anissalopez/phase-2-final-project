@@ -5,11 +5,11 @@ import { weekday } from "../weekdata";
 import { Table } from "react-bootstrap";
 import {
   format,
-  startOfWeek,
-  addDays,
-  lastDayOfWeek,
   addWeeks,
-  subWeeks
+  subWeeks,
+  startOfWeek,
+  lastDayOfWeek,
+  addDays
 } from "date-fns";
 
 
@@ -17,6 +17,10 @@ import {
 
 
 function HabitContainer( {habits, updateWeekDay, removeHabit}){
+
+
+
+
 
     const [activeDay, setActiveDay] = useState(new Date());
   
@@ -40,32 +44,26 @@ function HabitContainer( {habits, updateWeekDay, removeHabit}){
   
 
      
-    const renderWeekDays = () => {
-        let currentDate = activeDay
-
-        console.log(currentDate)
-         const startDate = startOfWeek(activeDay, { weekStartsOn: 1 });
-         const endDate = lastDayOfWeek(activeDay, { weekStartsOn: 1 });
-
-   
-         console.log(format(currentDate, "d"))
-         const week =[];
-         
-         while(startDate <= endDate){
-           for(let i = 0; i < 7; i++){
-
-      
-               week.push(<th>{format(currentDate, "d")}</th>);
-               currentDate = addDays(currentDate, 1)
-           }
-         }
-         console.log(week)
-         return <>{week}</>
-         }
-   
-renderWeekDays()
-
  
+    const renderWeekDays = () => {
+    
+    let week = [];
+      
+  
+      const startDate = startOfWeek(activeDay, { weekStartsOn: 1 });
+      const endDate = lastDayOfWeek(activeDay, { weekStartsOn: 1 });
+      let currentDay = startDate
+
+    for(let day = 0; day < 7; day++){
+      week.push(<th>{format(currentDay, "d")}</th>);
+      currentDay = addDays(currentDay, 1);
+      console.log(currentDay)
+    }
+      return <tr>{week}</tr>  
+
+       }
+
+
     const tableFooter = () => {
       return (
            <>
@@ -90,6 +88,7 @@ renderWeekDays()
                 <thead>
                     <tr>
                         <th>Habits</th>
+                        {renderWeekDays()}
                         <th></th>
                     </tr>
                 </thead>
