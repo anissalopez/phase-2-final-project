@@ -1,9 +1,28 @@
 import { weekday } from "../weekdata";
 import { Table } from "react-bootstrap";
+import {format, startOfWeek, addDays} from "date-fns";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faPercent } from '@fortawesome/free-solid-svg-icons';
 
 
-function WeekData({ habits}){
+function WeekData({ changeWeek, habits, activeDay, dateHeader}){
     let habitCount = {};
+
+    const renderWeekRange = () => {
+        let week = [];
+        const startDate = startOfWeek(activeDay, { weekStartsOn: 1 });
+        let currentDay = startDate;
+        let first;
+        let second;
+        let ending;
+        
+    
+          for(let day = 0; day < 7; day++){
+            week.push(format(addDays(currentDay, day), "d"));
+
+          }
+        return <h4 className="weekRange">{week[0]}{ending}-{week[6]}{ending}</h4> 
+      }
 
     habits.forEach((habit) => {
         habitCount[habit.habit] = 0;
@@ -23,6 +42,8 @@ function WeekData({ habits}){
 
     return (
         <div>
+            {dateHeader()}
+            {renderWeekRange()}
            <Table>
             <thead>
                 <tr>
@@ -30,14 +51,17 @@ function WeekData({ habits}){
                         Habits
                     </th>
                     <th>
-                        % of Weekly Goal
+                    <FontAwesomeIcon icon={faPercent} /> 
                     </th>
+                   
                 </tr>
             </thead>
             <tbody>
                 {habitData}
             </tbody>
          </Table>
+         {changeWeek()}
+         
         </div>
     )
 };

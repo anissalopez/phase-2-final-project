@@ -23,6 +23,14 @@ th{
   padding: 20px;
 }
 
+.weekRange{
+  display:flex;
+  text-align:center;
+  padding: 20px;
+  align-items: center;
+  justify-content: center;
+}
+
 
 
 
