@@ -12,7 +12,7 @@ function HabitContainer( {habits, updateWeekDay, removeHabit}){
   const itemRefs = React.useRef(new Array())
 
     useEffect(()=> {
-        console.log(itemRefs.current)
+        
     }, [])
   
   const changeWeekHandle = (btnType) => {
@@ -38,7 +38,7 @@ function HabitContainer( {habits, updateWeekDay, removeHabit}){
     let currentDay = startDate;
 
       for(let day = 0; day < 7; day++){
-        week.push(<th ref={(element) => itemRefs.current.push(addDays(currentDay, day))} key={day}>{format(addDays(currentDay, day), "E")} {format(addDays(currentDay, day), "d")}</th>);
+        week.push(<th ref={(element) => itemRefs.current.push(format(addDays(currentDay, day), "MM dd"))} key={day}>{format(addDays(currentDay, day), "E")} {format(addDays(currentDay, day), "d")}</th>);
       }
     return <>{week}</> 
   }

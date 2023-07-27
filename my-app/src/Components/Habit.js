@@ -1,33 +1,42 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState} from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faCheck} from '@fortawesome/free-solid-svg-icons';
 import { format } from "date-fns";
 
 function Habit({ habit, updateWeekDay, weekDays, removeHabit, refs}){
 
+    const [dates, setDates] = useState([new Date()])
+    const formattedDate = format((new Date()), "MM dd")
+    const currentDay = new Date()
+
+    console.log(dates)
     
-console.log(refs.current)
 
-
-    const dateFormat = "MMM dd yyyy";
-    const date = format(new Date(), dateFormat)
-
-
-
-    function handleClick(e){
-            console.log(this)
+    function handleClick(index){
         
-        fetch(`http://localhost:3000/habits/${habit.id}`, {
+        if(refs.current[index] != formattedDate){
+           alert("please check off a habit for the correct date")
+        }
+
+
+        const filteredDates = dates.filter((day) => day != currentDay)
+    
+
+        console.log(dates)
+      
+            fetch(`http://localhost:3000/habits/${habit.id}`, {
             method: "PATCH",
             headers: {
                 "content-type": "application/json",
                 "accept": "application/json"
             },
-            body: JSON.stringify({[date]: true})
+            body: JSON.stringify({"dates": filteredDates})
         })
         .then(resp => resp.json())
-        .then(data => updateWeekDay(data))
+        .then(data => console.log(data))
         .catch(error => console.log(error))
+    
+        
     };
 
     function handleDelete(){
@@ -38,11 +47,11 @@ console.log(refs.current)
         .then(() => removeHabit(habit.id))
     }
 
-    const weekButtons = weekDays.map((day) => {
+    const weekButtons = weekDays.map((day, index) => {
         const completed = habit[day]? <FontAwesomeIcon icon={faCheck} /> : null
             return(
                 <td key={day}>
-                    <input type="button"  className={habit[day] ? "btn btn-success" : "btn btn-outline-primary custom"} onClick={handleClick} />
+                    <input type="button"  className={habit[day] ? "btn btn-success" : "btn btn-outline-primary custom"} onClick={()=>handleClick(index)} />
                         {completed}
                 </td>)
     });
