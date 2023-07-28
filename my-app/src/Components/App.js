@@ -6,6 +6,9 @@ import NavBar from "./NavBar";
 import WeekData from "./WeekData";
 import Cal from "./Calendar";
 import {subWeeks, addWeeks, format} from "date-fns";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+
 
 
 function App() {
@@ -13,28 +16,22 @@ function App() {
   const [habits, setHabits] = useState([]);
   const [activeDay, setActiveDay] = useState(new Date());
 
-  const dateHeader = () => {
-    const dateFormat = "MMM yyyy";
-    return (
-          <h2 className="dateHeader">{format(activeDay, dateFormat)}</h2> 
-    );
-  };
-
+  const dateHeader = () => {<h2 className="dateHeader">{format((activeDay),"MMM yyyy")}</h2>};
 
   const changeWeek = () => {
     return (
         <div className="row">
-          <div className= "col" onClick={() => changeWeekHandle("prev")}>prev week</div>
-          <div className="col" onClick={() => changeWeekHandle("next")}>next week</div>
+          <div className= "col" onClick={() => changeWeekHandle("prev")}><FontAwesomeIcon pull="right" size="lg" className= "leftArrow" icon={faArrowLeft} /></div>
+          <div className="col" onClick={() => changeWeekHandle("next")}><FontAwesomeIcon pull="left" size="lg" className="rightArrow" icon={faArrowRight}/></div>
         </div>
     );
   };
 
-  const changeWeekHandle = (btnType) => {
-    if (btnType === "prev") {
+  const changeWeekHandle = (btnName) => {
+    if (btnName === "prev") {
       setActiveDay(subWeeks(activeDay, 1));
     };
-    if (btnType === "next") {
+    if (btnName === "next") {
       setActiveDay(addWeeks(activeDay, 1));
     };
   };

@@ -2,23 +2,30 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 function NavBar() {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" >
       <Container>
-        <Navbar.Brand href="/">Habit Tracker App</Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="me-auto">
-            <NavDropdown title="More Options" id="basic-nav-dropdown">
-              <NavDropdown.Item href="/AddHabit">Add Habit</NavDropdown.Item>
+        <Navbar.Brand href="/">Habit Tracker</Navbar.Brand>
+        
+
+        <Navbar.Collapse placement="end" >
+          <Nav>
+            <NavDropdown title="More Options" >
               <NavDropdown.Item href="/WeekData">Weekly Data</NavDropdown.Item>
               <NavDropdown.Item href="/Calendar">Monthly Data</NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
+        <Nav.Link className="ml-auto" href="/AddHabit"><FontAwesomeIcon icon={faPlus}/></Nav.Link>
+      
+
+   
       </Container>
+    
     </Navbar>
   );
 }

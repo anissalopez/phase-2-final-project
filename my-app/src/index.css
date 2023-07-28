@@ -1,3 +1,5 @@
+
+
 td {
   text-align: center;
   width: 90px;
@@ -30,6 +32,17 @@ th{
   align-items: center;
   justify-content: center;
 }
+
+.rightArrow{
+  padding: 25px;
+}
+
+.leftArrow{
+  padding: 25px;
+
+}
+
+
 
 
 

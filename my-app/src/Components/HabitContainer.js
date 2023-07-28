@@ -1,22 +1,11 @@
 import React, { useState, useEffect } from "react";
 import Habit from "./Habit";
-import Header from "./Header";
 import { weekday } from "../weekdata";
 import { Table } from "react-bootstrap";
 import {format, startOfWeek, addDays} from "date-fns";
 
 function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeDay, dateHeader, updateCompletedHabits}){
 
-  
-
-  const itemRefs = React.useRef(new Array())
-
-    useEffect(()=> {
-        
-    }, [])
-  
-
- 
   
   
   const renderWeekDays = () => {
@@ -25,19 +14,18 @@ function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeD
     let currentDay = startDate;
 
       for(let day = 0; day < 7; day++){
-        week.push(<th ref={() => itemRefs.current.push(addDays(currentDay, day))} key={day}>{format(addDays(currentDay, day), "E")} {format(addDays(currentDay, day), "d")}</th>);
+        week.push(<th key={day}>{format(addDays(currentDay, day), "E")} {format(addDays(currentDay, day), "d")}</th>);
       }
     return <>{week}</> 
   }
 
 
 
-    const dailyHabits = habits.map((habit) => <Habit activeDay={activeDay} updateCompletedHabits={updateCompletedHabits} refs={itemRefs} removeHabit={removeHabit} updateWeekDay={updateWeekDay} weekDays={weekday}  key={habit.id} habit={habit} />);
+  const dailyHabits = habits.map((habit) => <Habit activeDay={activeDay} updateCompletedHabits={updateCompletedHabits} removeHabit={removeHabit} updateWeekDay={updateWeekDay} weekDays={weekday}  key={habit.id} habit={habit} />);
   
 
     return(
         <div>
-            <Header />
              {dateHeader()}
             <Table >
                 <thead>
