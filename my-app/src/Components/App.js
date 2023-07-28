@@ -2,7 +2,7 @@ import HabitForm from "./HabitForm";
 import HabitContainer from "./HabitContainer";
 import React, {useState, useEffect} from "react";
 import { Routes, Route } from "react-router-dom";
-import NavBar from "./NavBar";
+import Navigation from "./NavBar";
 import WeekData from "./WeekData";
 import Cal from "./Calendar";
 import {subWeeks, addWeeks, format} from "date-fns";
@@ -72,7 +72,7 @@ function App() {
 
   return (
      <div className="container">
-      <NavBar />
+      <Navigation />
         <Routes>
           <Route path="/Calendar" element={<Cal/>}></Route>
           <Route path="/AddHabit" element={<HabitForm habits={habits} updateHabitList={updateHabitList}/>} />

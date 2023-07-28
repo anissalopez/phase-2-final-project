@@ -2,32 +2,27 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import Dropdown from 'react-bootstrap/esm/DropdownToggle';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faBars } from '@fortawesome/free-solid-svg-icons';
 
-function NavBar() {
+function Navigation() {
   return (
-    <Navbar expand="lg" >
+    <Navbar expand="lg" className="bg-body-tertiary">
       <Container>
-        <Navbar.Brand href="/">Habit Tracker</Navbar.Brand>
-        
-
-        <Navbar.Collapse placement="end" >
-          <Nav>
-            <NavDropdown title="More Options" >
+        <Navbar.Brand href="/">Habit App</Navbar.Brand>
+          <Nav aria-label="Toggle navigation" >
+            <NavDropdown >
+              <NavDropdown.Item href="#/AddHabit">Add Habit</NavDropdown.Item>
               <NavDropdown.Item href="/WeekData">Weekly Data</NavDropdown.Item>
-              <NavDropdown.Item href="/Calendar">Monthly Data</NavDropdown.Item>
+              <NavDropdown.Item href="/MonthlyData">Monthly Data</NavDropdown.Item>
             </NavDropdown>
           </Nav>
-        </Navbar.Collapse>
-        <Nav.Link className="ml-auto" href="/AddHabit"><FontAwesomeIcon icon={faPlus}/></Nav.Link>
-      
-
-   
-      </Container>
     
+      </Container>
     </Navbar>
   );
 }
 
-export default NavBar;
+
+export default Navigation;
