@@ -1,28 +1,25 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt, faCheck } from '@fortawesome/free-solid-svg-icons';
-import { format } from "date-fns";
+import { format, startOfWeek, addDays } from "date-fns";
 
-function Habit({ habit, updateCompletedHabits, weekDays, removeHabit, refs }) {
+function Habit({ habit, updateCompletedHabits, removeHabit,  activeDay }) {
 
-  const currentDay = new Date();
+const currentDay = new Date()
 
 
   function handleClick(index) {
 
-    console.log(refs.current[index])
-    if(habit[refs.current[index]]){
+    console.log(index)
+
+    const formattedIndex = format((index), "MM dd")
+    const formattedDay = format((currentDay), "MM dd")
+   
+    if(habit[index]){
         alert("this habit has been completed!")
     }
-
-
-
-    if (refs.current[index].getDay() <= currentDay.getDay() && refs.current[index].getDay() > 0){
-        
-        
-        const clickedDate = refs.current[index]
-     
-
+    else if (formattedIndex <= formattedDay){
+        const clickedDate = index
         const updateDays = {
             [clickedDate]: true};
 
@@ -38,7 +35,7 @@ function Habit({ habit, updateCompletedHabits, weekDays, removeHabit, refs }) {
           .then(data => updateCompletedHabits(data))
       }
 
-      else{
+      else if(formattedIndex > formattedDay){
         alert("You can not complete a habit for a future day")
       }
     }
@@ -57,22 +54,32 @@ function Habit({ habit, updateCompletedHabits, weekDays, removeHabit, refs }) {
   }
 
 
-  const weekButtons = weekDays.map((day, index) => {
+
+function renderButtons(){
+    let weekButtons = [];
+    const startDate = startOfWeek(activeDay, { weekStartsOn: 1 });
+
+    let currentDate = startDate;
+
+      for(let day = 0; day < 7; day++){
+      
 
 
-    
-    const completed = habit[refs.current[index]] ? <FontAwesomeIcon icon={faCheck} /> : null
-    return (
-      <td key={day}>
-        <button className={habit[refs.current[index]] ? "btn btn-success" : "btn btn-outline-primary custom"} onClick={() => handleClick(index)}>{completed}</button>
- 
-      </td>)
-  });
+        weekButtons.push(<td key={day}><button className={
+            habit[addDays(currentDate, day)] ? "btn btn-success" : "btn btn-outline-primary custom"
+        }onClick={()=>handleClick(addDays(currentDate, day))}>
+             {habit[addDays(currentDate, day)] ?  <FontAwesomeIcon icon={faCheck} /> : null }
+            </button></td>);
+      }
+    return <>{weekButtons}</> 
+}
+
+
 
   return (
     <tr>
       <th scope="row">{habit.habit}</th>
-      {weekButtons}
+      {renderButtons()}
       <td><button onClick={handleDelete} className="btn btn-danger"><FontAwesomeIcon icon={faTrashAlt} /></button></td>
     </tr>
   )

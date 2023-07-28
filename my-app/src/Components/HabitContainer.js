@@ -32,7 +32,7 @@ function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeD
 
 
 
-    const dailyHabits = habits.map((habit) => <Habit updateCompletedHabits={updateCompletedHabits} refs={itemRefs} removeHabit={removeHabit} updateWeekDay={updateWeekDay} weekDays={weekday}  key={habit.id} habit={habit} />);
+    const dailyHabits = habits.map((habit) => <Habit activeDay={activeDay} updateCompletedHabits={updateCompletedHabits} refs={itemRefs} removeHabit={removeHabit} updateWeekDay={updateWeekDay} weekDays={weekday}  key={habit.id} habit={habit} />);
   
 
     return(
