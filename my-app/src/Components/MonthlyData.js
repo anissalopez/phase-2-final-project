@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Habit from "./Habit";
 import { weekday } from "../weekdata";
 import { Table } from "react-bootstrap";
-import {format, startOfWeek, addDays} from "date-fns";
+import {format, startOfWeek, addDays, startOfMonth, endOfWeek, endOfMonth, } from "date-fns";
 import DateHeader from "./Header";
 
 
@@ -14,27 +14,25 @@ function MonthlyData({changeWeek, habits, updateWeekDay, removeHabit, activeDay,
         const weekDays = [];
         for (let day = 0; day < 7; day++) {
           weekDays.push(
-            <div className="day weekNames">
-              {format(addDays(weekStartDate, day), "E")}
-            </div>
+             <td>{format(addDays(weekStartDate, day), "E")}</td> 
           );
         }
         return <div className="weekContainer">{weekDays}</div>;
       };
 
-      const generateDatesForCurrentWeek = (date, selectedDate, activeDay) => {
+      const generateDatesForCurrentWeek = (date) => {
         let currentDate = date;
         const week = [];
         for (let day = 0; day < 7; day++) {
           const cloneDate = currentDate;
           week.push(
-            <div >
+            <td >
               {format(currentDate, "d")}
-            </div>
+            </td>
           );
           currentDate = addDays(currentDate, 1);
         }
-        return <>{week}</>;
+        return <tr>{week}</tr>;
       };
     
       const getDates = () => {
@@ -49,7 +47,7 @@ function MonthlyData({changeWeek, habits, updateWeekDay, removeHabit, activeDay,
     
         while (currentDate <= endDate) {
           allWeeks.push(
-            generateDatesForCurrentWeek(currentDate, selectedDate, activeDate)
+            generateDatesForCurrentWeek(currentDate, activeDay)
           );
           currentDate = addDays(currentDate, 7);
         }
@@ -82,13 +80,11 @@ function MonthlyData({changeWeek, habits, updateWeekDay, removeHabit, activeDay,
             <Table >
                 <thead>
                     <tr>
-                        <th>Habits</th>
-                        {renderWeekDays()}
-                        <th></th>
+                    {getWeekDaysNames()}
                     </tr>
                 </thead>
                 <tbody>
-                    {dailyHabits}
+                  {getDates()}
                 </tbody>
                 </Table>
                 <>{changeWeek()}</>
@@ -101,4 +97,4 @@ function MonthlyData({changeWeek, habits, updateWeekDay, removeHabit, activeDay,
     )
 }
 
-export default HabitContainer;
+export default MonthlyData;
