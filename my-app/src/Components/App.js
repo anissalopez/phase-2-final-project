@@ -17,7 +17,25 @@ function App() {
   const [habits, setHabits] = useState([]);
   const [activeDay, setActiveDay] = useState(new Date());
 
-  console.log(activeDay)
+  function isDate(keys){
+
+    keys.forEach((key) => {
+      return key && Object.prototype.toString.call(key) === "[object Date]"
+    })
+  }
+
+  
+
+
+
+  habits.forEach((habit) =>{
+    if(Object.keys(habit) === true ){
+      console.log(habit)
+    }
+    
+  }
+  )
+
 
  
 

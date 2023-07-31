@@ -1,4 +1,3 @@
-import { weekday } from "../weekdata";
 import { Table } from "react-bootstrap";
 import {format, startOfWeek, addDays, endOfWeek} from "date-fns";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -7,36 +6,26 @@ import DateHeader from "./Header";
 
 
 function WeekData({ changeWeek, habits, activeDay}){
+    const startWeek = startOfWeek(activeDay, { weekStartsOn: 1 });
+    const endWeek = endOfWeek(activeDay, {weekStartsOn:1});
     let habitCount = {};
-    
-
-    const habitPercent = habits.map((habit) => {
-        const startDate = startOfWeek(activeDay, { weekStartsOn: 1});
-        const endDate = endOfWeek(activeDay, {weekStartsOn:1 })
-        let newDatesArray = [];
-        
-        return {[habit.habit] : new Date(habit.dates)}
-
-    })
-
-    console.log(habitPercent)
 
     const renderWeekRange = () => {
         let week = [];
-        const startDate = startOfWeek(activeDay, { weekStartsOn: 1 });
-        let currentDay = startDate;
-       
+        let currentDay = startWeek;
           for(let day = 0; day < 7; day++){
-            week.push(format(addDays(currentDay, day), "d"));
-
-          }
+            week.push(format(addDays(currentDay, day), "do"));
+          };
         return <h4 className="weekRange">{week[0]}-{week[6]}</h4> 
-      }
+      };
 
     habits.forEach((habit) => {
         habitCount[habit.habit] = 0;
-         weekday.forEach((day) =>  {if(habit[day]){habitCount[habit.habit] = habitCount[habit.habit]  + 1};
-         });
+
+        Object.keys(habit).forEach((key) => {
+            if(new Date(key) >= startWeek &&  new Date(key) <= endWeek)
+            habitCount[habit.habit] = habitCount[habit.habit] + 1
+            })
        });
 
     const habitData = habits.map((habit) => {
@@ -46,8 +35,8 @@ function WeekData({ changeWeek, habits, activeDay}){
                 <td>{habit.habit}</td>
                 <td>{habitCount[habit.habit] > 0 ?  percent : `0%`} </td>
             </tr>  
-    );
-});
+        );
+    });
 
     return (
         <div>

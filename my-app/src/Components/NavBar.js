@@ -9,8 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function Navigation() {
 
-  const [content, showContent] = useState(false)
-  console.log(content)
+
 
 
   return (
