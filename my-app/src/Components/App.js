@@ -8,7 +8,7 @@ import Cal from "./Calendar";
 import {subWeeks, addWeeks, format} from "date-fns";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import DateHeader from "./Header"
+import MonthlyData from "./MonthlyData"
 
 
 
@@ -101,6 +101,7 @@ function App() {
           <Route path="/Calendar" element={<Cal/>}></Route>
           <Route path="/AddHabit" element={<HabitForm habits={habits} updateHabitList={updateHabitList}/>} />
           <Route exact path="/WeekData" element ={<WeekData changeWeek={changeWeek}  activeDay={activeDay} habits={habits}/>} />
+          <Route exact path="/MonthlyData" element ={<MonthlyData changeWeek={changeWeek}  changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateCompletedHabits={updateCompletedHabits} habits={habits}/>} />
           <Route exact path="/" element ={<HabitContainer changeWeek={changeWeek}  changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateCompletedHabits={updateCompletedHabits} habits={habits}/>} />
         </Routes>
         </div>
