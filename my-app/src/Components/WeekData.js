@@ -3,9 +3,10 @@ import { Table } from "react-bootstrap";
 import {format, startOfWeek, addDays, endOfWeek} from "date-fns";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faPercent } from '@fortawesome/free-solid-svg-icons';
+import DateHeader from "./Header";
 
 
-function WeekData({ changeWeek, habits, activeDay, dateHeader}){
+function WeekData({ changeWeek, habits, activeDay}){
     let habitCount = {};
     
 
@@ -15,7 +16,7 @@ function WeekData({ changeWeek, habits, activeDay, dateHeader}){
         let newDatesArray = [];
         
         return {[habit.habit] : new Date(habit.dates)}
-        
+
     })
 
     console.log(habitPercent)
@@ -50,7 +51,7 @@ function WeekData({ changeWeek, habits, activeDay, dateHeader}){
 
     return (
         <div>
-            {dateHeader()}
+            <DateHeader activeDay={activeDay} />
             {renderWeekRange()}
            <Table>
             <thead>

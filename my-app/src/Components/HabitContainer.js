@@ -3,8 +3,9 @@ import Habit from "./Habit";
 import { weekday } from "../weekdata";
 import { Table } from "react-bootstrap";
 import {format, startOfWeek, addDays} from "date-fns";
+import DateHeader from "./Header";
 
-function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeDay, dateHeader, updateCompletedHabits}){
+function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeDay, updateCompletedHabits}){
 
   
   
@@ -26,7 +27,7 @@ function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeD
 
     return(
         <div>
-             {dateHeader()}
+        <DateHeader activeDay={activeDay}/>
             <Table >
                 <thead>
                     <tr>

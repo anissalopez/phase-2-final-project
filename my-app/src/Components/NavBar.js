@@ -18,6 +18,7 @@ export default function Navigation() {
 
         <Nav aria-label="Toggle navigation" >
           <NavDropdown >
+          <NavDropdown.Item href="/">Home</NavDropdown.Item>
             <NavDropdown.Item href="/AddHabit">Add Habit</NavDropdown.Item>
             <NavDropdown.Item href="/WeekData">Weekly Data</NavDropdown.Item>
             <NavDropdown.Item href="/MonthlyData">Monthly Data</NavDropdown.Item>

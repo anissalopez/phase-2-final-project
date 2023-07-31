@@ -8,6 +8,7 @@ import Cal from "./Calendar";
 import {subWeeks, addWeeks, format} from "date-fns";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import DateHeader from "./Header"
 
 
 
@@ -16,13 +17,16 @@ function App() {
   const [habits, setHabits] = useState([]);
   const [activeDay, setActiveDay] = useState(new Date());
 
-  const dateHeader = () => {<h2 className="dateHeader">{format((activeDay),"MMM yyyy")}</h2>};
+  console.log(activeDay)
+
+ 
+
 
   const changeWeek = () => {
     return (
         <div className="row">
-          <div className= "col" onClick={() => changeWeekHandle("prev")}><FontAwesomeIcon pull="right" size="lg" className= "leftArrow" icon={faArrowLeft} /></div>
-          <div className="col" onClick={() => changeWeekHandle("next")}><FontAwesomeIcon pull="left" size="lg" className="rightArrow" icon={faArrowRight}/></div>
+          <div className= "col" onClick={() => changeWeekHandle("prev")}><FontAwesomeIcon size="lg" className= "leftArrow fa-pull-left" icon={faArrowLeft} /></div>
+          <div className="col" onClick={() => changeWeekHandle("next")}><FontAwesomeIcon size="lg" className="rightArrow fa-pull-right" icon={faArrowRight}/></div>
         </div>
     );
   };
@@ -72,13 +76,14 @@ function App() {
 
   return (
      <div className="container">
+
       <Navigation />
-      
+
         <Routes>
           <Route path="/Calendar" element={<Cal/>}></Route>
           <Route path="/AddHabit" element={<HabitForm habits={habits} updateHabitList={updateHabitList}/>} />
-          <Route exact path="/WeekData" element ={<WeekData changeWeek={changeWeek} dateHeader={dateHeader} activeDay={activeDay} habits={habits}/>} />
-          <Route exact path="/" element ={<HabitContainer changeWeek={changeWeek} dateHeader={dateHeader} changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateCompletedHabits={updateCompletedHabits} habits={habits}/>} />
+          <Route exact path="/WeekData" element ={<WeekData changeWeek={changeWeek}  activeDay={activeDay} habits={habits}/>} />
+          <Route exact path="/" element ={<HabitContainer changeWeek={changeWeek}  changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateCompletedHabits={updateCompletedHabits} habits={habits}/>} />
         </Routes>
         </div>
   

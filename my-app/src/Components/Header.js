@@ -1,13 +1,16 @@
 import React from "react";
+import {format} from "date-fns";
 
 
-function Header() {
+function DateHeader( { activeDay }) {
 
+
+  console.log(activeDay)
   return (
     <div>
-      <h1 className="text-center">Habit Tracker</h1>
+    <h2 className="dateHeader">{format((activeDay), "MMMM yyyy")}</h2>
     </div>
   );
 }
 
-export default Header;
+export default DateHeader;

@@ -1,5 +1,4 @@
 
-
 td {
   text-align: center;
   width: 90px;
@@ -39,11 +38,6 @@ th{
 
 .leftArrow{
   padding: 25px;
-
-}
-
-.hidden{
-  display: none;
 }
 
 
