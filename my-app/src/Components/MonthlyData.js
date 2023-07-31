@@ -2,89 +2,71 @@ import React, { useState, useEffect } from "react";
 import Habit from "./Habit";
 import { weekday } from "../weekdata";
 import { Table } from "react-bootstrap";
-import {format, startOfWeek, addDays, startOfMonth, endOfWeek, endOfMonth, } from "date-fns";
+import {subMonths, addMonths, getDaysInMonth, format, startOfWeek, addDays, startOfMonth, endOfWeek, endOfMonth, } from "date-fns";
 import DateHeader from "./Header";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 
 
-function MonthlyData({changeWeek, habits, updateWeekDay, removeHabit, activeDay, updateCompletedHabits}){
+function MonthlyData({habits, updateWeekDay, removeHabit, activeDay, updateCompletedHabits}){
+   
+const [activeDate, setActiveDate] = useState((new Date()))
 
-    const getWeekDaysNames = () => {
-        const weekStartDate = startOfWeek(activeDay);
-        const weekDays = [];
-        for (let day = 0; day < 7; day++) {
-          weekDays.push(
-             <td>{format(addDays(weekStartDate, day), "E")}</td> 
-          );
-        }
-        return <div className="weekContainer">{weekDays}</div>;
-      };
-
-      const generateDatesForCurrentWeek = (date) => {
-        let currentDate = date;
-        const week = [];
-        for (let day = 0; day < 7; day++) {
-          const cloneDate = currentDate;
-          week.push(
+      const generateDatesForCurrentMonth = (date) => {
+     
+        const endOfTheSelectedMonth = endOfMonth(activeDate);
+        const startOfTheSelectedMonth = startOfMonth(activeDate)
+        let currentDate = startOfTheSelectedMonth;
+        const monthDays = [];
+        while (currentDate <= endOfTheSelectedMonth)  {
+          monthDays.push(
             <td >
               {format(currentDate, "d")}
             </td>
           );
           currentDate = addDays(currentDate, 1);
         }
-        return <tr>{week}</tr>;
-      };
-    
-      const getDates = () => {
-        const startOfTheSelectedMonth = startOfMonth(activeDay);
-        const endOfTheSelectedMonth = endOfMonth(activeDay);
-        const startDate = startOfWeek(startOfTheSelectedMonth);
-        const endDate = endOfWeek(endOfTheSelectedMonth);
-    
-        let currentDate = startDate;
-    
-        const allWeeks = [];
-    
-        while (currentDate <= endDate) {
-          allWeeks.push(
-            generateDatesForCurrentWeek(currentDate, activeDay)
-          );
-          currentDate = addDays(currentDate, 7);
-        }
-    
-        return <div className="weekContainer">{allWeeks}</div>;
+        return <>{monthDays}</>
       };
 
+    const habitButtons = habits.map((habit) => {
 
+    })
 
-
+    const changeWeek = () => {
+        return (
+            <div className="row">
+              <div className= "col" onClick={() => changeMonth("prev")}><FontAwesomeIcon size="lg" className= "leftArrow fa-pull-left" icon={faArrowLeft} /></div>
+              <div className="col" onClick={() => changeMonth("next")}><FontAwesomeIcon size="lg" className="rightArrow fa-pull-right" icon={faArrowRight}/></div>
+            </div>
+        );
+      };
+    
   
-  const renderWeekDays = () => {
-    let week = [];
-    const startDate = startOfWeek(activeDay, { weekStartsOn: 1 });
-    let currentDay = startDate;
 
-      for(let day = 0; day < 7; day++){
-        week.push(<th key={day}>{format(addDays(currentDay, day), "E")} {format(addDays(currentDay, day), "d")}</th>);
-      }
-    return <>{week}</> 
-  }
+    function changeMonth(btnName){
+        if (btnName === "prev") {
+            setActiveDate(subMonths(activeDate, 1));
+          };
+          if (btnName === "next") {
+            setActiveDate(addMonths(activeDate, 1));
+          };
 
-
-
-  
+    }
 
     return(
         <div>
-        <DateHeader activeDay={activeDay}/>
+            <h2 className="dateHeader">{format((activeDate), "MMMM yyyy")}</h2>
             <Table >
                 <thead>
-                    <tr>
-                    {getWeekDaysNames()}
-                    </tr>
+                 <tr>
+                    <th>Habits</th>
+                    {generateDatesForCurrentMonth(activeDay)}
+                 </tr>
                 </thead>
                 <tbody>
-                  {getDates()}
+=
                 </tbody>
                 </Table>
                 <>{changeWeek()}</>
