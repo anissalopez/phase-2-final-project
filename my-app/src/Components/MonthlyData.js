@@ -12,11 +12,10 @@ import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 function MonthlyData({habits, updateWeekDay, removeHabit, activeDay, updateCompletedHabits}){
    
 const [activeDate, setActiveDate] = useState((new Date()))
+const endOfTheSelectedMonth = endOfMonth(activeDate);
+const startOfTheSelectedMonth = startOfMonth(activeDate)
 
       const generateDatesForCurrentMonth = (date) => {
-     
-        const endOfTheSelectedMonth = endOfMonth(activeDate);
-        const startOfTheSelectedMonth = startOfMonth(activeDate)
         let currentDate = startOfTheSelectedMonth;
         const monthDays = [];
         while (currentDate <= endOfTheSelectedMonth)  {
@@ -30,9 +29,17 @@ const [activeDate, setActiveDate] = useState((new Date()))
         return <>{monthDays}</>
       };
 
-    const habitButtons = habits.map((habit) => {
 
+    const habitDisplay = habits.map((habit) => {
+        return (
+            <tr>
+                <td>{habit.habit}</td>
+             
+            </tr>
+        )
     })
+          
+
 
     const changeWeek = () => {
         return (
@@ -66,7 +73,7 @@ const [activeDate, setActiveDate] = useState((new Date()))
                  </tr>
                 </thead>
                 <tbody>
-=
+                    {habitDisplay}
                 </tbody>
                 </Table>
                 <>{changeWeek()}</>
