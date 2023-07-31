@@ -73,6 +73,7 @@ function App() {
   return (
      <div className="container">
       <Navigation />
+      
         <Routes>
           <Route path="/Calendar" element={<Cal/>}></Route>
           <Route path="/AddHabit" element={<HabitForm habits={habits} updateHabitList={updateHabitList}/>} />

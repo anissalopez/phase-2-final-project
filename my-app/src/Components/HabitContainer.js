@@ -40,6 +40,8 @@ function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeD
                 </tbody>
                 </Table>
                 <>{changeWeek()}</>
+
+   
          
         </div>
        
