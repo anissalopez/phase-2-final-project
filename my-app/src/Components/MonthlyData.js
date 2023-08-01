@@ -9,8 +9,37 @@ function MonthlyData({habits}){
     const [activeDate, setActiveDate] = useState((new Date()));
     const endOfTheSelectedMonth = endOfMonth(activeDate);
     const startOfTheSelectedMonth = startOfMonth(activeDate);
-    let monthlyButtons = [];
-    let habitCount = {};
+    
+    function handleButtons(habit) {
+        const buttons = [];
+        const selectedHabit = habit.habit;
+      
+        for (let i = 0; i < getDaysInMonth(activeDate); i++) {
+          const currentDate = addDays(startOfTheSelectedMonth, i);
+          const isCompleted = habit[currentDate.toString()] === true;
+          
+          console.log(currentDate.toDateString())
+      
+          buttons.push(
+            <td key={currentDate}>
+              <button
+                className={isCompleted ? "btn btn-success" : "btn btn-outline-primary" }
+              ></button>
+            </td>
+          );
+        }
+        return buttons;
+      }
+      
+
+      const habitDisplay = habits.map((habit) => (
+        <tr key={habit.habit}>
+          <td>{habit.habit}</td>
+          {handleButtons(habit)}
+        </tr>
+      ));
+      
+
    
 
 
@@ -29,49 +58,6 @@ function MonthlyData({habits}){
       };
 
 
-    habits.forEach((habit) => {
-        habitCount[habit.habit] = []
-        Object.keys(habit).forEach((key) => {
-            if(new Date(key) >= startOfTheSelectedMonth &&  new Date(key) <= endOfTheSelectedMonth)
-            habitCount[habit.habit].push(key)
-            });
-    
-       });
-
-      
-       
- 
-
-      for (let i = 0; i < getDaysInMonth(activeDate); i++){
-        let currentDate = startOfTheSelectedMonth
-        let className;
-        console.log(className)
-
-
-        habits.forEach((habit) => {
-            habitCount[habit.habit].forEach((date) => {
-                if(date.includes(addDays((activeDate), i))){
-                    className = "active"
-                }
-            })
-        })
-         monthlyButtons.push(
-                <td key={i}><button  className={className === "active" ? "btn btn-primary" : null} ></button>
-                </td>);       
-        }
-
-    const habitDisplay = habits.map((habit) => {
- 
-    
-
-        return (
-            <tr key={habit.habit}><td>{habit.habit}</td>
-            {monthlyButtons}
-           
-           
-            </tr>
-        );
-    });
           
     const changeWeek = () => {
         return (
