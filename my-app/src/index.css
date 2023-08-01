@@ -1,15 +1,23 @@
+.weekDataDiv{
+  height: 200px;
+  position: relative;
+  border: 3px solid green;
 
-td {
+}
+
+
+
+.weekData td {
   text-align: center;
   width: 90px;
 }
 
-tr{
+.weekData tr{
   width: 160px;
   text-align:center;
 }
 
-th{
+.weekData th{
   text-align:center;
   width: 90px;
 }
@@ -41,12 +49,13 @@ th{
 }
 
 .monthlyBtn{
-  height: 39.79px;
-  width: 37.81px;
+  height: 20px;
+  width: 20px;
 }
 
-.table-wrapper{
+.monthlyData{
   overflow: hidden;
+  table-layout: auto !important;
 }
 
 

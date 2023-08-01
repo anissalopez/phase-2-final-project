@@ -1,16 +1,11 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
-
 import { NavDropdown, Nav, Navbar} from "react-bootstrap";
-
-
 import "bootstrap/dist/css/bootstrap.min.css";
 
+
 export default function Navigation() {
-
-
-
 
   return (
 

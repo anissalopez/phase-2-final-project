@@ -1,7 +1,7 @@
-import { Table } from "react-bootstrap";
+import { Table, Container } from "react-bootstrap";
 import {format, startOfWeek, addDays, endOfWeek} from "date-fns";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPercent } from '@fortawesome/free-solid-svg-icons';
+import {faPercent, faDash } from '@fortawesome/free-solid-svg-icons';
 import DateHeader from "./Header";
 
 
@@ -14,18 +14,17 @@ function WeekData({ changeWeek, habits, activeDay}){
         let week = [];
         let currentDay = startWeek;
           for(let day = 0; day < 7; day++){
-            week.push(format(addDays(currentDay, day), "do"));
+            week.push(format(addDays(currentDay, day), "MMMM dd, yyyy"));
           };
-        return <h4 className="weekRange">{week[0]}-{week[6]}</h4> 
+        return <h4 className="weekRange">{week[0]}{week[6]}</h4> 
       };
 
     habits.forEach((habit) => {
         habitCount[habit.habit] = 0;
-
         Object.keys(habit).forEach((key) => {
             if(new Date(key) >= startWeek &&  new Date(key) <= endWeek)
             habitCount[habit.habit] = habitCount[habit.habit] + 1
-            })
+            });
        });
 
     const habitData = habits.map((habit) => {
@@ -39,10 +38,11 @@ function WeekData({ changeWeek, habits, activeDay}){
     });
 
     return (
-        <div>
+        <div >
             <DateHeader activeDay={activeDay} />
             {renderWeekRange()}
-           <Table>
+          <Container className="weekDataDiv">
+           <Table className="weekData">
             <thead>
                 <tr>
                     <th>
@@ -58,10 +58,10 @@ function WeekData({ changeWeek, habits, activeDay}){
                 {habitData}
             </tbody>
          </Table>
+         </Container>
          {changeWeek()}
-         
         </div>
-    )
+    );
 };
 
 export default WeekData;

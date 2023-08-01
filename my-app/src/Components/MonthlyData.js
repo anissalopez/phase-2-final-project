@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Table } from "react-bootstrap";
-import { subMonths, addMonths, getDaysInMonth, format, addDays, startOfMonth, endOfMonth } from "date-fns";
+import { subMonths, addMonths, getDaysInMonth, format, addDays, startOfMonth, endOfMonth, startOfDay } from "date-fns";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -10,6 +10,9 @@ function MonthlyData({habits}){
     const endOfTheSelectedMonth = endOfMonth(activeDate);
     const startOfTheSelectedMonth = startOfMonth(activeDate);
     let monthlyButtons = [];
+    let habitCount = {};
+   
+
 
       const generateDatesForCurrentMonth = (date) => {
         let currentDate = startOfTheSelectedMonth;
@@ -26,22 +29,50 @@ function MonthlyData({habits}){
       };
 
 
-    for (let i = 0; i < getDaysInMonth(activeDate); i++){
-    monthlyButtons.push(
-        <td key={i}><button className="btn btn-outline-primary monthlyBtn"></button>
-        </td>);       
-    };
+    habits.forEach((habit) => {
+        habitCount[habit.habit] = []
+        Object.keys(habit).forEach((key) => {
+            if(new Date(key) >= startOfTheSelectedMonth &&  new Date(key) <= endOfTheSelectedMonth)
+            habitCount[habit.habit].push(key)
+            });
+    
+       });
+
+      
+       
+ 
+
+      for (let i = 0; i < getDaysInMonth(activeDate); i++){
+        let currentDate = startOfTheSelectedMonth
+        let className;
+        console.log(className)
+
+
+        habits.forEach((habit) => {
+            habitCount[habit.habit].forEach((date) => {
+                if(date.includes(addDays((activeDate), i))){
+                    className = "active"
+                }
+            })
+        })
+         monthlyButtons.push(
+                <td key={i}><button  className={className === "active" ? "btn btn-primary" : null} ></button>
+                </td>);       
+        }
 
     const habitDisplay = habits.map((habit) => {
+ 
+    
+
         return (
             <tr key={habit.habit}><td>{habit.habit}</td>
-                {monthlyButtons}
+            {monthlyButtons}
+           
+           
             </tr>
         );
     });
           
-
-
     const changeWeek = () => {
         return (
             <div className="row">
@@ -63,7 +94,7 @@ function MonthlyData({habits}){
     return(
         <div>
             <h2 className="dateHeader">{format((activeDate), "MMMM yyyy")}</h2>
-            <Table className="table-sm table-responsive">
+            <Table className="table-sm monthlyData">
                 <thead>
                  <tr>
                     <th>Habits</th>
