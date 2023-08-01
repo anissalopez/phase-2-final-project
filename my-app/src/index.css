@@ -40,6 +40,15 @@ th{
   padding: 25px;
 }
 
+.monthlyBtn{
+  height: 39.79px;
+  width: 37.81px;
+}
+
+.table-wrapper{
+  overflow: hidden;
+}
+
 
 
 
