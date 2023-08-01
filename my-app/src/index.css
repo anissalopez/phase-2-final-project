@@ -1,29 +1,19 @@
-.main{
-  position:fixed;
-  top: 150px;
-  bottom: 50px;
-  left: 50px;
-  right: 50px;
-}
-
-
-
 .weekData td {
   text-align: center;
   width: 90px;
+
 }
 
-.habitDisplay{
-  width: 100px;
-}
 .weekData tr{
-  width: 160px;
-  text-align:center;
+  text-align: left;
 }
 
 .weekData th{
   text-align:center;
-  width: 90px;
+}
+
+.habitDisplay{
+  width: 100px;
 }
 
 .custom{
@@ -31,9 +21,14 @@
   height: 37.81px;
 }
 
-.dateHeader{
+.monthHeader{
   text-align:center;
-  padding-bottom: 70px;
+  padding-top: 25px;
+  padding-bottom: 50px;
+}
+
+.dateHeader{
+  text-align: center;
   padding-top: 25px;
 }
 
@@ -63,11 +58,6 @@
 .monthlyData{
   overflow: hidden;
   table-layout: auto !important;
-
-
-
-
-
 }
 
 body {
@@ -75,8 +65,10 @@ body {
   padding: 30px;
 }
 
-h1{
-  padding: 30px;
+
+
+.tableDiv{
+  padding-top: 50px;
 }
 
 

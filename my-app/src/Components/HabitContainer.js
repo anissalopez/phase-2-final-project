@@ -28,7 +28,7 @@ function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeD
     return(
         <div>
         <DateHeader activeDay={activeDay}/>
-          <div className="main">
+          <div className="tableDiv">
             <Table >
                 <thead>
                     <tr>

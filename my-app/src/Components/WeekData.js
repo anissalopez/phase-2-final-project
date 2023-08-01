@@ -16,7 +16,7 @@ function WeekData({ changeWeek, habits, activeDay}){
           for(let day = 0; day < 7; day++){
             week.push(format(addDays(currentDay, day), "MMMM dd, yyyy"));
           };
-        return <h2 className="weekRange">{week[0]} - {week[6]}</h2> 
+        return <h4 className="weekRange">{week[0]} - {week[6]}</h4> 
       };
 
     habits.forEach((habit) => {
@@ -38,9 +38,9 @@ function WeekData({ changeWeek, habits, activeDay}){
     });
 
     return (
-        <div >
+        <div>
             {renderWeekRange()}
-          <Container className="weekDataDiv">
+          <div className="tableDiv">
            <Table className="weekData" striped bordered>
             <thead>
                 <tr>
@@ -57,7 +57,7 @@ function WeekData({ changeWeek, habits, activeDay}){
                 {habitData}
             </tbody>
          </Table>
-         </Container>
+         </div>
          {changeWeek()}
         </div>
     );

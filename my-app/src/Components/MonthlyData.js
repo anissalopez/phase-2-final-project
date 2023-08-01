@@ -78,7 +78,7 @@ function MonthlyData({habits}){
 
     return(
             <div>
-            <h2 className="dateHeader">{format((activeDate), "MMMM yyyy")}</h2>
+            <h2 className="monthHeader">{format((activeDate), "MMMM yyyy")}</h2>
             <table className="table-sm monthlyData">
                 <thead>
                  <tr>
