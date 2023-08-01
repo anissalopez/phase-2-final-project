@@ -41,7 +41,7 @@ function WeekData({ changeWeek, habits, activeDay}){
         <div >
             {renderWeekRange()}
           <Container className="weekDataDiv">
-           <Table className="weekData">
+           <Table className="weekData" striped bordered>
             <thead>
                 <tr>
                     <th>

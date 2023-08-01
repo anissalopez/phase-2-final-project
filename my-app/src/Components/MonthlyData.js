@@ -12,8 +12,7 @@ function MonthlyData({habits}){
     
     function handleButtons(habit) {
         const buttons = [];
-        const selectedHabit = habit.habit;
-      
+    
         for (let i = 0; i < getDaysInMonth(activeDate); i++) {
           const currentDate = addDays(startOfTheSelectedMonth, i);
           const isCompleted = habit[currentDate.toString()] === true;
@@ -23,18 +22,18 @@ function MonthlyData({habits}){
           buttons.push(
             <td key={currentDate}>
               <button
-                className={isCompleted ? "btn btn-success" : "btn btn-outline-primary" }
+                className={isCompleted ? "monthBtn btn btn-success" : "monthBtn btn btn-outline-primary" }
               ></button>
             </td>
           );
-        }
+        };
         return buttons;
-      }
+      };
       
 
       const habitDisplay = habits.map((habit) => (
         <tr key={habit.habit}>
-          <td>{habit.habit}</td>
+          <td className="habitDisplay">{habit.habit}</td>
           {handleButtons(habit)}
         </tr>
       ));
@@ -78,9 +77,9 @@ function MonthlyData({habits}){
     };
 
     return(
-        <div>
+            <div>
             <h2 className="dateHeader">{format((activeDate), "MMMM yyyy")}</h2>
-            <Table className="table-sm monthlyData">
+            <table className="table-sm monthlyData">
                 <thead>
                  <tr>
                     <th>Habits</th>
@@ -90,8 +89,9 @@ function MonthlyData({habits}){
                 <tbody>
                     {habitDisplay}
                 </tbody>
-                </Table>
+                </table>
                 <>{changeWeek()}</>
+              
         </div>
     );
 };

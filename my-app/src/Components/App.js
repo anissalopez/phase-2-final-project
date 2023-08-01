@@ -4,7 +4,6 @@ import React, {useState, useEffect} from "react";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./NavBar";
 import WeekData from "./WeekData";
-import Cal from "./Calendar";
 import {subWeeks, addWeeks, format} from "date-fns";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
@@ -17,16 +16,6 @@ function App() {
   const [habits, setHabits] = useState([]);
   const [activeDay, setActiveDay] = useState(new Date());
 
-  function isDate(keys){
-
-    keys.forEach((key) => {
-      return key && Object.prototype.toString.call(key) === "[object Date]"
-    })
-  }
-
-  
-
-
 
   habits.forEach((habit) =>{
     if(Object.keys(habit) === true ){
@@ -35,9 +24,6 @@ function App() {
     
   }
   )
-
-
- 
 
 
   const changeWeek = () => {
@@ -98,7 +84,6 @@ function App() {
       <Navigation />
 
         <Routes>
-          <Route path="/Calendar" element={<Cal/>}></Route>
           <Route path="/AddHabit" element={<HabitForm habits={habits} updateHabitList={updateHabitList}/>} />
           <Route exact path="/WeekData" element ={<WeekData changeWeek={changeWeek}  activeDay={activeDay} habits={habits}/>} />
           <Route exact path="/MonthlyData" element ={<MonthlyData setActiveDay={setActiveDay} changeWeek={changeWeek}  changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateCompletedHabits={updateCompletedHabits} habits={habits}/>} />
