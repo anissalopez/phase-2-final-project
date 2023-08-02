@@ -84,5 +84,4 @@ function renderButtons(){
     </tr>
   )
 }
-
 export default Habit;

@@ -30,7 +30,7 @@ function WeekData({ changeWeek, habits, activeDay}){
     const habitData = habits.map((habit) => {
         const percent = `${(habitCount[habit.habit]/7 * 100).toFixed(0)}%`;
         return (
-            <tr key={habit.habit}>
+            <tr key={habit.habit} className="align-middle">
                 <td>{habit.habit}</td>
                 <td>{habitCount[habit.habit] > 0 ?  percent : `0%`} </td>
             </tr>  
@@ -38,28 +38,27 @@ function WeekData({ changeWeek, habits, activeDay}){
     });
 
     return (
-        <div>
+        <Container className="d-grid h-100">
             {renderWeekRange()}
-          <div className="tableDiv">
-           <Table className="weekData .bg-primary.bg-gradient" striped bordered >
+           <Table className="weekData " striped bordered >
             <thead>
-                <tr>
-                    <th>
+                <tr className="align-middle">
+                    <th >
                         Habits
                     </th>
                     <th>
                     <FontAwesomeIcon icon={faPercent} /> 
                     </th>
-                   
                 </tr>
             </thead>
             <tbody>
                 {habitData}
             </tbody>
          </Table>
-         </div>
          {changeWeek()}
-        </div>
+         </Container>
+        
+      
     );
 };
 
