@@ -1,34 +1,27 @@
 import React, { useState, useEffect } from "react";
 import Habit from "./Habit";
 import { weekday } from "../weekdata";
-import { Table } from "react-bootstrap";
+import { Table, Container } from "react-bootstrap";
 import {format, startOfWeek, addDays} from "date-fns";
 import DateHeader from "./Header";
 
 function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeDay, updateCompletedHabits}){
 
-  
-  
   const renderWeekDays = () => {
     let week = [];
     const startDate = startOfWeek(activeDay, { weekStartsOn: 1 });
     let currentDay = startDate;
-
       for(let day = 0; day < 7; day++){
         week.push(<th key={day}>{format(addDays(currentDay, day), "E")} {format(addDays(currentDay, day), "d")}</th>);
-      }
+      };
     return <>{week}</> 
-  }
-
-
+  };
 
   const dailyHabits = habits.map((habit) => <Habit activeDay={activeDay} updateCompletedHabits={updateCompletedHabits} removeHabit={removeHabit} updateWeekDay={updateWeekDay} weekDays={weekday}  key={habit.id} habit={habit} />);
   
-
     return(
-        <div>
-        <DateHeader activeDay={activeDay}/>
-          <div className="tableDiv">
+        <Container  id="habitContainer" className="d-grid h-100">
+          <DateHeader activeDay={activeDay}/>
             <Table >
                 <thead>
                     <tr>
@@ -42,13 +35,8 @@ function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeD
                 </tbody>
                 </Table>
                 <>{changeWeek()}</>
-
-   
-          </div>
-        </div>
-       
-     
-    )
-}
+        </Container>   
+    );
+};
 
 export default HabitContainer;

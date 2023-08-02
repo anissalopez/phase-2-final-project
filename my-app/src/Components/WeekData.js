@@ -41,7 +41,7 @@ function WeekData({ changeWeek, habits, activeDay}){
         <div>
             {renderWeekRange()}
           <div className="tableDiv">
-           <Table className="weekData" striped bordered>
+           <Table className="weekData .bg-primary.bg-gradient" striped bordered >
             <thead>
                 <tr>
                     <th>

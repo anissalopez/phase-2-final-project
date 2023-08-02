@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Table } from "react-bootstrap";
-import { subMonths, addMonths, getDaysInMonth, format, addDays, startOfMonth, endOfMonth, startOfDay } from "date-fns";
+import { Table, Container } from "react-bootstrap";
+import { subMonths, addMonths, getDaysInMonth, format, addDays, startOfMonth, endOfMonth } from "date-fns";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -12,12 +12,9 @@ function MonthlyData({habits}){
     
     function handleButtons(habit) {
         const buttons = [];
-    
         for (let i = 0; i < getDaysInMonth(activeDate); i++) {
           const currentDate = addDays(startOfTheSelectedMonth, i);
           const isCompleted = habit[currentDate.toString()] === true;
-          
-          console.log(currentDate.toDateString())
       
           buttons.push(
             <td key={currentDate}>
@@ -30,19 +27,14 @@ function MonthlyData({habits}){
         return buttons;
       };
       
-
-      const habitDisplay = habits.map((habit) => (
+    const habitDisplay = habits.map((habit) => (
         <tr key={habit.habit}>
           <td className="habitDisplay">{habit.habit}</td>
           {handleButtons(habit)}
         </tr>
       ));
       
-
-   
-
-
-      const generateDatesForCurrentMonth = (date) => {
+    const generateDatesForCurrentMonth = (date) => {
         let currentDate = startOfTheSelectedMonth;
         const monthDays = [];
              while (currentDate <= endOfTheSelectedMonth)  {
@@ -55,10 +47,8 @@ function MonthlyData({habits}){
         };
         return <>{monthDays}</>
       };
-
-
-          
-    const changeWeek = () => {
+     
+    const changeDates = () => {
         return (
             <div className="row">
               <div className= "col" onClick={() => changeMonth("prev")}><FontAwesomeIcon size="lg" className= "leftArrow fa-pull-left" icon={faArrowLeft} /></div>
@@ -77,22 +67,21 @@ function MonthlyData({habits}){
     };
 
     return(
-            <div>
-            <h2 className="monthHeader">{format((activeDate), "MMMM yyyy")}</h2>
-            <table className="table-sm monthlyData">
-                <thead>
+     <Container>
+        <h2 className="monthHeader">{format((activeDate), "MMMM yyyy")}</h2>
+        <Table className="monthlyData sm">
+            <thead>
                  <tr>
                     <th>Habits</th>
                     {generateDatesForCurrentMonth(activeDate)}
                  </tr>
-                </thead>
+            </thead>
                 <tbody>
                     {habitDisplay}
                 </tbody>
-                </table>
-                <>{changeWeek()}</>
-              
-        </div>
+        </Table>
+        <>{changeDates()}</>
+     </Container> 
     );
 };
 

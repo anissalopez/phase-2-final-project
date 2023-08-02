@@ -1,3 +1,22 @@
+#root{
+ 
+ 
+}
+
+body{
+  min-height: 100vh;
+  display: grid;
+  background-color: #f5f5f5;
+}
+
+.habitContainer{
+  background: #f5f5f5;
+}
+#formContainer{
+  place-items: center center;
+  background:#f5f5f5;
+}
+
 .weekData td {
   text-align: center;
   width: 90px;
@@ -60,16 +79,12 @@
   table-layout: auto !important;
 }
 
-body {
-  margin: auto;
-  padding: 30px;
+
+#habitForm{
+  max-width: 330px;
 }
 
 
-
-.tableDiv{
-  padding-top: 50px;
-}
 
 
 

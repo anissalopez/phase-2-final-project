@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
-import Form from 'react-bootstrap/Form';
+import { Button, Container, Form }from 'react-bootstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
+
 
 function HabitForm({ updateHabitList, habits }){
     const [form, setForm] = useState({
@@ -35,15 +37,18 @@ function HabitForm({ updateHabitList, habits }){
 
 
     return(
-        <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="habitForm">
-            <Form.Label>Habit Form</Form.Label>
-            <Form.Control type="text" placeholder="please enter a habit" value={habit} onChange={(e) => setHabit(e.target.value)}/>
+        <Container id="formContainer" className="d-grid h-100">
+        <Form id="habitForm" className="text-center w-60" onSubmit={handleSubmit}>
+            <Form.Group  controlId="habitForm">
+            <Form.Label className="mb-4 fs-4">Add Habit</Form.Label>
+        
+            <Form.Control className="mb-4" type="text" placeholder="please enter a habit" value={habit} onChange={(e) => setHabit(e.target.value)}/>
             <Button variant="primary" type="submit">
             Submit
             </Button>
          </Form.Group>
         </Form>
+        </Container>
     );
 };
 
