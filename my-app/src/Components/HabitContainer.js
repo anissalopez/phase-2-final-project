@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Habit from "./Habit";
-
 import { Table, Container } from "react-bootstrap";
 import {format, startOfWeek, addDays} from "date-fns";
 import DateHeader from "./Header";
@@ -20,9 +19,10 @@ function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeD
   const dailyHabits = habits.map((habit) => <Habit activeDay={activeDay} updateCompletedHabits={updateCompletedHabits} removeHabit={removeHabit} updateWeekDay={updateWeekDay}   key={habit.id} habit={habit} />);
   
     return(
-        <Container  id="habitContainer" className="d-grid h-100">
-          <DateHeader activeDay={activeDay}/>
-            <Table >
+      <>
+        <DateHeader activeDay={activeDay}/>
+        <Container id="habitContainer" fluid className="d-grid pt-5">
+            <Table responsive>
                 <thead>
                     <tr>
                         <th>Habits</th>
@@ -36,6 +36,7 @@ function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeD
                 </Table>
                 <>{changeWeek()}</>
         </Container>   
+      </>
     );
 };
 

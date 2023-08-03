@@ -66,13 +66,14 @@ function MonthlyData({habits}){
           };
     };
 
-    console.log(generateDatesForCurrentMonth(activeDate))
 
     return(
         <>
-        <h2 className="monthHeader">{format((activeDate), "MMMM yyyy")}</h2>
-        <Container className="d-grid w-500 h-100">
-        <Table responsive size="sm">
+        <Container fluid className="mt-5 mb-5">
+        <h1 className="dateHeader">{format((activeDate), "MMMM yyyy")}</h1>
+        </Container>
+        <Container  fluid className="d-grid pt-5">
+        <Table responsive size="sm" >
             <thead>
                  <tr>
                     <th>Habits</th>
@@ -85,9 +86,9 @@ function MonthlyData({habits}){
         </Table>
         <>{changeDates()}</>
         </Container> 
-    
-     
-     </>
+       
+        </>
+
     );
 };
 

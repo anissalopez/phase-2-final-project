@@ -38,7 +38,7 @@ weekData tr{
 
 .dateHeader{
   text-align: center;
-  padding-top: 25px;
+  padding-top: 100px;
 }
 
 .weekRange{
@@ -50,9 +50,7 @@ weekData tr{
 }
 
 .rightArrow{
-  padding: 25px;
-
- 
+  padding: 25px; 
 }
 
 .leftArrow{
@@ -65,27 +63,31 @@ weekData tr{
   width: 20px;
 }
 
-.monthlyData{
-  overflow: hidden;
-  table-layout: auto !important;
-}
-
-
 #habitForm{
   max-width: 330px;
 }
-
 
 .monthlyData{
   display: grid;
 
 }
 
-
-.root{
-  min-height: 100vh;
-  min-width: 100vh;
+.navigation{
+  grid-template-columns: auto;
 }
+
+.navIcon{
+  margin-right:10px;
+}
+
+.navText{
+  margin-right:10px;
+}
+
+
+
+
+
 
 
 

@@ -16,7 +16,7 @@ function WeekData({ changeWeek, habits, activeDay}){
           for(let day = 0; day < 7; day++){
             week.push(format(addDays(currentDay, day), "MMMM dd, yyyy"));
           };
-        return <h4 className="weekRange">{week[0]} - {week[6]}</h4> 
+        return <Container fluid className="mt-5 mb-5"><h2 className="dateHeader">{week[0]} - {week[6]}</h2></Container> 
       };
 
     habits.forEach((habit) => {
@@ -30,7 +30,7 @@ function WeekData({ changeWeek, habits, activeDay}){
     const habitData = habits.map((habit) => {
         const percent = `${(habitCount[habit.habit]/7 * 100).toFixed(0)}%`;
         return (
-            <tr key={habit.habit} className="align-middle">
+            <tr key={habit.habit}>
                 <td>{habit.habit}</td>
                 <td>{habitCount[habit.habit] > 0 ?  percent : `0%`} </td>
             </tr>  
@@ -38,11 +38,12 @@ function WeekData({ changeWeek, habits, activeDay}){
     });
 
     return (
-        <Container className="d-grid h-100">
+        <>
             {renderWeekRange()}
-           <Table className="weekData " striped bordered >
-            <thead>
-                <tr className="align-middle">
+          <Container className="d-grid pt-5" fluid>
+           <Table className="weekData" bordered >
+            <thead className="thead-dark">
+                <tr>
                     <th >
                         Habits
                     </th>
@@ -57,6 +58,7 @@ function WeekData({ changeWeek, habits, activeDay}){
          </Table>
          {changeWeek()}
          </Container>
+         </>
         
       
     );
