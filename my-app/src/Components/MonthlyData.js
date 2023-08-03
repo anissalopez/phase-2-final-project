@@ -86,7 +86,6 @@ function MonthlyData({habits}){
         </Table>
         <>{changeDates()}</>
         </Container> 
-       
         </>
 
     );
