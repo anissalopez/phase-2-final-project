@@ -45,7 +45,7 @@ function App() {
   };
 
   useEffect(()=> {
-      fetch('http://localhost:3000/habits')
+      fetch('https://habittrackerapp-qyzn.onrender.com/habits')
       .then(response => response.json())
       .then(data => setHabits(data))
 

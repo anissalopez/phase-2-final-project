@@ -23,7 +23,7 @@ const currentDay = new Date()
         const updateDays = {
             [clickedDate]: true};
 
-        fetch(`http://localhost:3000/habits/${habit.id}`, {
+        fetch(`https://habittrackerapp-qyzn.onrender.com/habits/${habit.id}`, {
           method: "PATCH",
           headers: {
             "content-type": "application/json",
@@ -46,7 +46,7 @@ const currentDay = new Date()
 
 
   function handleDelete() {
-    fetch(`http://localhost:3000/habits/${habit.id}`, {
+    fetch(`https://habittrackerapp-qyzn.onrender.com/habits/${habit.id}`, {
       method: 'DELETE',
     })
       .then(resp => resp.json())
