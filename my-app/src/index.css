@@ -21,8 +21,8 @@ weekData tr{
   text-align:center;
 }
 
-.habitDisplay{
-  width: 100px;
+.habitDisplay.table{
+  width: 200px;
 }
 
 .custom{
@@ -51,6 +51,7 @@ weekData tr{
 
 .rightArrow{
   padding: 25px;
+
  
 }
 
@@ -75,9 +76,16 @@ weekData tr{
 }
 
 
+.monthlyData{
+  display: grid;
+
+}
 
 
-
+.root{
+  min-height: 100vh;
+  min-width: 100vh;
+}
 
 
 

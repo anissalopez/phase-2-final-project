@@ -29,7 +29,7 @@ function MonthlyData({habits}){
       
     const habitDisplay = habits.map((habit) => (
         <tr key={habit.habit}>
-          <td className="habitDisplay">{habit.habit}</td>
+          <td>{habit.habit}</td>
           {handleButtons(habit)}
         </tr>
       ));
@@ -50,7 +50,7 @@ function MonthlyData({habits}){
      
     const changeDates = () => {
         return (
-            <div className="row">
+            <div className="row h-15 w-15 col">
               <div className= "col" onClick={() => changeMonth("prev")}><FontAwesomeIcon size="lg" className= "leftArrow fa-pull-left" icon={faArrowLeft} /></div>
               <div className="col" onClick={() => changeMonth("next")}><FontAwesomeIcon size="lg" className="rightArrow fa-pull-right" icon={faArrowRight}/></div>
             </div>
@@ -66,10 +66,13 @@ function MonthlyData({habits}){
           };
     };
 
+    console.log(generateDatesForCurrentMonth(activeDate))
+
     return(
-     <Container>
+        <>
         <h2 className="monthHeader">{format((activeDate), "MMMM yyyy")}</h2>
-        <Table className="monthlyData sm">
+        <Container className="d-grid w-500 h-100">
+        <Table responsive size="sm">
             <thead>
                  <tr>
                     <th>Habits</th>
@@ -81,7 +84,10 @@ function MonthlyData({habits}){
                 </tbody>
         </Table>
         <>{changeDates()}</>
-     </Container> 
+        </Container> 
+    
+     
+     </>
     );
 };
 

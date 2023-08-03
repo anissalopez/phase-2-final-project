@@ -8,7 +8,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default function Navigation() {
 
   return (
-      <>
+      <Container className="d-grid∆">
         <Navbar bg="primary" data-bs-theme="dark">
           <Container>
             <Navbar.Brand href="/">Home</Navbar.Brand>
@@ -19,6 +19,6 @@ export default function Navigation() {
             </Nav>
           </Container>
         </Navbar>
-        </>
+        </Container>
   )
 }

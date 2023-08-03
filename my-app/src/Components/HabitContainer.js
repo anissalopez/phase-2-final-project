@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Habit from "./Habit";
-import { weekday } from "../weekdata";
+
 import { Table, Container } from "react-bootstrap";
 import {format, startOfWeek, addDays} from "date-fns";
 import DateHeader from "./Header";
@@ -17,7 +17,7 @@ function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeD
     return <>{week}</> 
   };
 
-  const dailyHabits = habits.map((habit) => <Habit activeDay={activeDay} updateCompletedHabits={updateCompletedHabits} removeHabit={removeHabit} updateWeekDay={updateWeekDay} weekDays={weekday}  key={habit.id} habit={habit} />);
+  const dailyHabits = habits.map((habit) => <Habit activeDay={activeDay} updateCompletedHabits={updateCompletedHabits} removeHabit={removeHabit} updateWeekDay={updateWeekDay}   key={habit.id} habit={habit} />);
   
     return(
         <Container  id="habitContainer" className="d-grid h-100">
