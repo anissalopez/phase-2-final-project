@@ -4,7 +4,7 @@ import React, {useState, useEffect} from "react";
 import { Routes, Route } from "react-router-dom";
 import Navigation from "./NavBar";
 import WeekData from "./WeekData";
-import {subWeeks, addWeeks, format} from "date-fns";
+import {subWeeks, addWeeks} from "date-fns";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import MonthlyData from "./MonthlyData"

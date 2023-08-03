@@ -1,70 +1,32 @@
-# Getting Started with Create React App
+# Habit Tracker App 
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+    Online habit tracker to track and manage daily habits by week and month. 
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+    Home Page: Features a weekly calendar that allows users to easily view weekly habits and mark them as complete. Users are able to mark past and current habits as complete but will receive an alert if they try to mark a habit on a future date as complete. Users are also able to delete the habit from the weekly calendar 
 
-### `npm start`
+    Add Habit: Form that allows users to add a new habit to their weekly calendar 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+    Weekly Data: Displays weekly habits and percentage of complete for the week 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    Monthly Data: Calendar that has total days of month and displays a green button for habits that were completed 
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Getting Started 
 
-### `npm run build`
+From the repo:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    Clone this project locally
+    Run npm install in your bash/command line
+    Run npm run dev in your bash/command line 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+#### Dev Dependencies 
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+    React
+    React-Dom
+    Babel 
+    Webpack
+    Font Awesome 
+    Date-fns 
+    React Bootstrap 
