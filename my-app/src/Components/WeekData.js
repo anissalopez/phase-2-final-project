@@ -1,8 +1,8 @@
 import { Table, Container } from "react-bootstrap";
 import {format, startOfWeek, addDays, endOfWeek} from "date-fns";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faPercent, faDash } from '@fortawesome/free-solid-svg-icons';
-import DateHeader from "./Header";
+import {faPercent } from '@fortawesome/free-solid-svg-icons';
+
 
 
 function WeekData({ changeWeek, habits, activeDay}){

@@ -57,7 +57,7 @@ function App() {
   };
 
   function removeHabit(habitID){
-    const newHabits = habits.filter((habit) => habit.id != habitID);
+    const newHabits = habits.filter((habit) => habit.id !== habitID);
     setHabits(newHabits);
   };
 
