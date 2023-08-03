@@ -45,7 +45,7 @@ function App() {
   };
 
   useEffect(()=> {
-      fetch('https://habittrackerapp-qyzn.onrender.com/habits')
+      fetch('https://habittracker-rvvt.onrender.com/habits')
       .then(response => response.json())
       .then(data => setHabits(data))
 

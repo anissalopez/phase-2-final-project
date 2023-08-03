@@ -17,7 +17,7 @@ function HabitForm({ updateHabitList }){
         const newHabit = {...form, habit: habit};
         setForm(newHabit);
 
-        fetch('https://habittrackerapp-qyzn.onrender.com/habits', {
+        fetch('https://habittracker-rvvt.onrender.com/habits', {
             method: "POST",
             headers: {
                 "content-type": "application/json",
