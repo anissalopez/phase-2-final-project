@@ -25,6 +25,8 @@ export default function Navigation() {
               <Nav.Link  className="navText col-md-auto text-white sqare border"href="/MonthlyData">
               <FontAwesomeIcon className="navIcon" icon={faCalendarDays} style={{color: "#ffffff",}} />
               Monthly Data</Nav.Link>
+              <Nav.Link  className="navText col-md-auto text-white sqare border"href="/Login">
+              User</Nav.Link>
             </Nav>
         </Navbar>
         </Container>

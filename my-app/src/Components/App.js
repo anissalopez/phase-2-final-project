@@ -7,7 +7,8 @@ import WeekData from "./WeekData";
 import {subWeeks, addWeeks} from "date-fns";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
-import MonthlyData from "./MonthlyData"
+import MonthlyData from "./MonthlyData";
+import Login from "./Login";
 
 
 
@@ -87,7 +88,9 @@ function App() {
           <Route exact path="/WeekData" element ={<WeekData changeWeek={changeWeek}  activeDay={activeDay} habits={habits}/>} />
           <Route exact path="/MonthlyData" element ={<MonthlyData setActiveDay={setActiveDay} changeWeek={changeWeek}  changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateCompletedHabits={updateCompletedHabits} habits={habits}/>} />
           <Route exact path="/" element ={<HabitContainer changeWeek={changeWeek}  changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateCompletedHabits={updateCompletedHabits} habits={habits}/>} />
+          <Route exact path="/Login" element ={<Login updateHabitList={updateHabitList}/>} />
         </Routes>
+
         </>
   
   );

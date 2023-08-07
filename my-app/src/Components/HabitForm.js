@@ -4,8 +4,7 @@ import { Button, Container, Form }from 'react-bootstrap'
 
 function HabitForm({ updateHabitList }){
     const [form, setForm] = useState({
-        habit: "",
-        completed: false,
+        habit: ""
     });
 
     const [habit, setHabit] = useState("");
