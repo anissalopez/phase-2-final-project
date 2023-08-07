@@ -37,18 +37,10 @@ function Login({ updateHabitList }){
      }
 
      if(validateLogin()){
-        fetch('https://habittracker-rvvt.onrender.com/habits', {
-            method: "POST",
-            headers: {
-                "content-type": "application/json",
-                "accept": "application/json"
-            },
-            body: JSON.stringify(newUser)
-        })
+        fetch(`https://habittracker-rvvt.onrender.com/habits/${username}`)
         .then(resp => resp.json())
         .then((data) => {
-            updateHabitList(data)
-            navigate('/')
+            console.log(data)
         }); 
 
      }

@@ -7,7 +7,7 @@ function NewUserForm({ updateHabitList }){
 const [form, setForm] = useState({
     firstName: "",
     lastName: "",
-    username: "",
+    id: "",
     password: ""
 })
 const navigate = useNavigate();
@@ -36,7 +36,7 @@ function validateNewUser(){
         newUser = false;
         alert("please enter a valid last name")
     }
-    if(form.username === "" || form.username === null){
+    if(form.id === "" || form.id === null){
         newUser = false;
         alert("please enter a valid username")
     }
@@ -77,11 +77,11 @@ function handleSubmit(e){
         <Container id="formContainer" className="d-grid h-75">
         <Form id="userForm" className="text-center w-60" onSubmit={handleSubmit}>
             <Form.Label className="mb-4 fs-4">First Name </Form.Label>
-            <Form.Control className="mb-4" type="text" placeholder="please enter a username" value={form.firstName} name="firstName" onChange={handleChange}/>
+            <Form.Control className="mb-4" type="text" placeholder="please enter your first name" value={form.firstName} name="firstName" onChange={handleChange}/>
             <Form.Label className="mb-4 fs-4">Last Name </Form.Label>
-            <Form.Control className="mb-4" type="text" placeholder="please enter a password" value={form.lastName} name="lastName" onChange={handleChange}/>
+            <Form.Control className="mb-4" type="text" placeholder="please enter your last name" value={form.lastName} name="lastName" onChange={handleChange}/>
             <Form.Label className="mb-4 fs-4">User Name </Form.Label>
-            <Form.Control className="mb-4" type="username" placeholder="please enter a username" value={form.username} name="username" onChange={handleChange}/>
+            <Form.Control className="mb-4" type="username" placeholder="please enter a username" value={form.id} name="id" onChange={handleChange}/>
             <Form.Label className="mb-4 fs-4">Password </Form.Label>
             <Form.Control className="mb-4" type="password" placeholder="please enter a password" value={form.password} name="password" onChange={handleChange}/>
             <Button variant="primary" type="submit">
