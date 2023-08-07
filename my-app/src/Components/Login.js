@@ -15,7 +15,14 @@ function Login({ updateHabitList }){
 
     const navigate = useNavigate();
 
-    console.log(form)
+    function validateLogin(){
+        let login = true;
+        if(username === "" || username === null){
+            login = false;
+            alert("please enter a valid username");
+        }
+        return login;
+    }
 
     function handleSubmit(e){
         e.preventDefault();
@@ -23,6 +30,10 @@ function Login({ updateHabitList }){
      const newUser = {
         userName: username,
         passWord: password
+     }
+
+     if(validateLogin()){
+
      }
 
      setForm(newUser)
@@ -52,6 +63,9 @@ function Login({ updateHabitList }){
             <Button variant="primary" type="submit">
             Submit
             </Button>
+            <Button variant="primary">
+            New User
+           </Button>
         </Form>
         </Container>
     );
