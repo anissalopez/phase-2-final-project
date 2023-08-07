@@ -9,6 +9,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import MonthlyData from "./MonthlyData";
 import Login from "./Login";
+import NewUserForm from "./NewUserForm";
 
 
 
@@ -89,6 +90,7 @@ function App() {
           <Route exact path="/MonthlyData" element ={<MonthlyData setActiveDay={setActiveDay} changeWeek={changeWeek}  changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateCompletedHabits={updateCompletedHabits} habits={habits}/>} />
           <Route exact path="/" element ={<HabitContainer changeWeek={changeWeek}  changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateCompletedHabits={updateCompletedHabits} habits={habits}/>} />
           <Route exact path="/Login" element ={<Login updateHabitList={updateHabitList}/>} />
+          <Route exact path="/NewUserForm" element ={<NewUserForm updateHabitList={updateHabitList}/>} />
         </Routes>
 
         </>
