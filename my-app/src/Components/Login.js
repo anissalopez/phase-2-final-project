@@ -2,12 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Container, Button } from "react-bootstrap";
 
-function Login({ updateHabitList }){
-
-    const [form, setForm] = useState({
-        userName: "",
-        passWord: ""
-    });
+function Login({ setHabits }){
 
     const [username, setUserName] = useState("");
     const [password, setPassWord] = useState("");
@@ -31,27 +26,28 @@ function Login({ updateHabitList }){
     function handleSubmit(e){
         e.preventDefault();
         
-     const newUser = {
-        userName: username,
-        passWord: password
+     const usern = {
+        username, password
      }
 
      if(validateLogin()){
-        fetch(`https://habittracker-rvvt.onrender.com/habits/${username}`)
-        .then(resp => resp.json())
-        .then((data) => {
-            console.log(data)
-        }); 
+        localStorage.setItem('user', username)
+      
+        
 
-     }
-
-     setForm(newUser) 
+    }
+     
     };
 
 
+    
+
+console.log(localStorage.getItem('user'))
     function newUserHandler(){
         navigate('/NewUserForm')
     }
+
+
 
     return(
         <Container id="formContainer" className="d-grid h-75">
@@ -59,7 +55,7 @@ function Login({ updateHabitList }){
             <Form.Label className="mb-4 fs-4">User Name </Form.Label>
             <Form.Control className="mb-4" type="text" placeholder="please enter a username" value={username} onChange={(e)=>setUserName(e.target.value)}/>
             <Form.Label className="mb-4 fs-4">Password </Form.Label>
-            <Form.Control className="mb-4" type="password" placeholder="please enter a password" value={password} onChange={(e)=>setPassWord(e.target.value)}/>
+            <Form.Control className="mb-4" type="text" placeholder="please enter a password" value={password} onChange={(e)=>setPassWord(e.target.value)}/>
             <Button variant="primary" type="submit">
             Submit
             </Button>

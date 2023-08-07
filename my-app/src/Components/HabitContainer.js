@@ -3,9 +3,10 @@ import Habit from "./Habit";
 import { Table, Container } from "react-bootstrap";
 import {format, startOfWeek, addDays} from "date-fns";
 import DateHeader from "./Header";
+import { useNavigate } from "react-router-dom";
 
 function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeDay, updateCompletedHabits}){
-
+  const navigate = useNavigate();
   const renderWeekDays = () => {
     let week = [];
     const startDate = startOfWeek(activeDay, { weekStartsOn: 1 });
@@ -16,8 +17,29 @@ function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeD
     return <>{week}</> 
   };
 
-  const dailyHabits = habits.map((habit) => <Habit activeDay={activeDay} updateCompletedHabits={updateCompletedHabits} removeHabit={removeHabit} updateWeekDay={updateWeekDay}   key={habit.id} habit={habit} />);
   
+  
+  
+  function userDisplay(user){
+    console.log(user)
+
+    if(user.habit === 'undefined'){
+      alert('please add habits')
+      navigate('/AddHabit')
+    }
+  }
+
+ 
+
+
+
+  /*const dailyHabits = habits.map((habit) => {
+    if(habit.habit.length === "" || habit.habit === null){
+      alert('Please add habits')
+     
+    }
+  <Habit activeDay={activeDay} updateCompletedHabits={updateCompletedHabits} removeHabit={removeHabit} updateWeekDay={updateWeekDay}   key={habit.id} habit={habit} />});
+  */
     return(
       <>
         <DateHeader activeDay={activeDay}/>
@@ -31,7 +53,7 @@ function HabitContainer({changeWeek, habits, updateWeekDay, removeHabit, activeD
                     </tr>
                 </thead>
                 <tbody>
-                    {dailyHabits}
+               {userDisplay(habits)}
                 </tbody>
                 </Table>
                 <>{changeWeek()}</>

@@ -2,33 +2,44 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Form }from 'react-bootstrap'
 
-function HabitForm({ updateHabitList }){
+function HabitForm({ updateHabitList, user, habits}){
     const [form, setForm] = useState({
         habit: ""
     });
+
+
+    console.log(user)
 
     const [habit, setHabit] = useState("");
 
     const navigate = useNavigate();
 
     function handleSubmit(e){
-        e.preventDefault();
-        const newHabit = {...form, habit: habit};
-        setForm(newHabit);
 
-        fetch('https://habittracker-rvvt.onrender.com/habits', {
-            method: "POST",
+        console.log(user)
+
+        const habitList = [...user.habits]
+
+        console.log(updateHabitList)
+
+ 
+        e.preventDefault();
+        
+
+       /* fetch(`https://habittracker-rvvt.onrender.com/habits/${user}`, {
+            method: "PATCH",
             headers: {
                 "content-type": "application/json",
                 "accept": "application/json"
             },
-            body: JSON.stringify(newHabit)
+            body: JSON.stringify()
         })
         .then(resp => resp.json())
         .then((data) => {
-            updateHabitList(data)
-            navigate('/')
+           console.log(data)
         }); 
+
+        */
     };
 
     return(

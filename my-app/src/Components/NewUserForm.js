@@ -8,7 +8,8 @@ const [form, setForm] = useState({
     firstName: "",
     lastName: "",
     id: "",
-    password: ""
+    password: "",
+    habits: []
 })
 const navigate = useNavigate();
 
@@ -83,7 +84,7 @@ function handleSubmit(e){
             <Form.Label className="mb-4 fs-4">User Name </Form.Label>
             <Form.Control className="mb-4" type="username" placeholder="please enter a username" value={form.id} name="id" onChange={handleChange}/>
             <Form.Label className="mb-4 fs-4">Password </Form.Label>
-            <Form.Control className="mb-4" type="password" placeholder="please enter a password" value={form.password} name="password" onChange={handleChange}/>
+            <Form.Control className="mb-4" type="text" placeholder="please enter a password" value={form.password} name="password" onChange={handleChange}/>
             <Button variant="primary" type="submit">
             Submit
             </Button>
