@@ -83,16 +83,16 @@ function NewUserForm({ updateHabitList, habits }){
         <Container id="formContainer" className="mt-5 d-grid h-75">
         <NavBar ></NavBar>
         <h2 className="mt-5">Welcome to Habit App</h2>
-        <Form id="userForm" className="mt-3 text-center w-60" onSubmit={handleSubmit}>
-            <Form.Label className="mb-2 fs-5 text-left">First Name </Form.Label>
+        <Form id="userForm" className="mt-3  w-60" onSubmit={handleSubmit}>
+            <Form.Label className="mb-2 mt-2 fs-5 text-left">First Name </Form.Label>
             <Form.Control className="mb-2" type="text" placeholder="enter first name" value={form.firstName} name="firstName" onChange={handleChange}/>
-            <Form.Label className="mb-2 fs-5">Last Name </Form.Label>
+            <Form.Label className="mb-2 mt-2 fs-5">Last Name </Form.Label>
             <Form.Control className="mb-2" type="text" placeholder="please last name" value={form.lastName} name="lastName" onChange={handleChange}/>
-            <Form.Label className="mb-2 fs-5">User Name </Form.Label>
+            <Form.Label className="mb-2 fs-5 mt-2">Username </Form.Label>
             <Form.Control className="mb-2" type="username" placeholder="please username" value={form.id} name="id" onChange={handleChange}/>
-            <Form.Label className="mb-2 fs-5">Password </Form.Label>
+            <Form.Label className="mb-2 fs-5 mt-2">Password </Form.Label>
             <Form.Control className="mb-2" type="password" placeholder="enter password" value={form.password} name="password" onChange={handleChange}/>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" className="mt-2 mb-2" type="submit">
             Submit
             </Button>
         </Form>
