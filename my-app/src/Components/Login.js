@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Container, Button } from "react-bootstrap";
 
-function Login({ setUser, habits }){
+function Login({ }){
 
     const [username, setUserName] = useState("");
     const [password, setPassWord] = useState("");
@@ -31,16 +31,15 @@ function Login({ setUser, habits }){
 
      if(validateLogin()){
 
-        setUser(username)
-        /*localStorage.setItem('user', username)*/
+
 
     }
     };
 
 
-    
+ 
 
-console.log(localStorage.getItem('user'))
+
     function newUserHandler(){
         navigate('/NewUserForm')
     }

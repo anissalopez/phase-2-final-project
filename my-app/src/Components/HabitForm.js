@@ -14,6 +14,7 @@ function HabitForm({ updateHabitList, currentUserHabits, habits}){
 
     function handleSubmit(e){
 
+
         console.log(currentUserHabits)
 
  
