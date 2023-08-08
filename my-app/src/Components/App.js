@@ -17,26 +17,17 @@ function App() {
 
   const [habits, setHabits] = useState([]);
   const [activeDay, setActiveDay] = useState(new Date());
+  const [currentUser, setCurrentUser] = useState(null)
 
 
   console.log(habits)
 
-  const user = localStorage.getItem('user')
+  /*const user = localStorage.getItem('user')*/
 
   useEffect(()=>{
-
-    if(user === "" || user === null){
-      alert("please login")
-    }
-
-    else {
-    fetch(`https://habittracker-rvvt.onrender.com/habits/${user}`)
+    fetch(`https://habittracker-rvvt.onrender.com/habits`)
     .then(res => res.json())
-    .then(data => setHabits(data))
-
-    }
-  
-
+    .then(data => setHabits(data)) 
   }, [])
 
   const changeWeek = () => {
@@ -58,11 +49,11 @@ function App() {
   };
 
 
-  function updateHabitList(newHabit){
-    const newHabits = {...habits}
-    newHabits.habits = [...newHabits.habits, newHabit]
+  function updateHabitList(newUser){
+    const newHabitList = [...habits, newUser]
 
-    console.log(newHabits)
+
+    setHabits(newHabitList)
     
    
   };
@@ -88,19 +79,19 @@ function App() {
   };
 
 
-console.log(user)
+
 
   return (
      <>
 
       <Navigation />
         <Routes>
-          <Route path="/AddHabit" element={<HabitForm habits={habits} updateHabitList={updateHabitList} user={user}/>} />
+          <Route path="/AddHabit" element={<HabitForm habits={habits} updateHabitList={updateHabitList} />} />
           <Route exact path="/WeekData" element ={<WeekData changeWeek={changeWeek}  activeDay={activeDay} habits={habits}/>} />
           <Route exact path="/MonthlyData" element ={<MonthlyData setActiveDay={setActiveDay} changeWeek={changeWeek}  changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateCompletedHabits={updateCompletedHabits} habits={habits}/>} />
           <Route exact path="/" element ={<HabitContainer changeWeek={changeWeek}  changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateCompletedHabits={updateCompletedHabits} habits={habits}/>} />
-          <Route exact path="/Login" element ={<Login  />} />
-          <Route exact path="/NewUserForm" element ={<NewUserForm updateHabitList={updateHabitList}/>} />
+          <Route exact path="/Login" element ={<Login habits={habits} />} />
+          <Route exact path="/NewUserForm" element ={<NewUserForm updateHabitList={updateHabitList} habits={habits} />} />
         </Routes>
 
         </>

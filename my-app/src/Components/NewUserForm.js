@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import {Form, Container, Button} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
-function NewUserForm({ updateHabitList }){
+function NewUserForm({ updateHabitList, habits }){
 
 const [form, setForm] = useState({
     firstName: "",
@@ -46,8 +46,19 @@ function validateNewUser(){
         alert("please enter a valid password")
     }
 
+    /* need to add functionality to create an alert if username is already taken habits.forEach((habit) => {
+        if(form.username === habit.id){
+            newUser = false;
+            alert("this username is taken")
+        }
+    })*/
+
+    console.log(habits)
     return newUser;
 }
+
+
+
 function handleSubmit(e){
     e.preventDefault();
     console.log(e)
@@ -84,7 +95,7 @@ function handleSubmit(e){
             <Form.Label className="mb-4 fs-4">User Name </Form.Label>
             <Form.Control className="mb-4" type="username" placeholder="please enter a username" value={form.id} name="id" onChange={handleChange}/>
             <Form.Label className="mb-4 fs-4">Password </Form.Label>
-            <Form.Control className="mb-4" type="text" placeholder="please enter a password" value={form.password} name="password" onChange={handleChange}/>
+            <Form.Control className="mb-4" type="password" placeholder="please enter a password" value={form.password} name="password" onChange={handleChange}/>
             <Button variant="primary" type="submit">
             Submit
             </Button>

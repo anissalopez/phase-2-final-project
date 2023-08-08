@@ -1,11 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Form, Container, Button } from "react-bootstrap";
 
-function Login({ setHabits }){
+function Login({ setUser, habits }){
 
     const [username, setUserName] = useState("");
     const [password, setPassWord] = useState("");
+    
 
 
     const navigate = useNavigate();
@@ -25,18 +26,13 @@ function Login({ setHabits }){
 
     function handleSubmit(e){
         e.preventDefault();
-        
-     const usern = {
-        username, password
-     }
 
      if(validateLogin()){
-        localStorage.setItem('user', username)
-      
-        
+
+        setUser(username)
+        /*localStorage.setItem('user', username)*/
 
     }
-     
     };
 
 
