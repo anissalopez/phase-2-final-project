@@ -21,6 +21,8 @@ function Login({ setUser, habits }){
             login = false
             alert("please enter a valid password")
         }
+
+        
         return login;
     };
 

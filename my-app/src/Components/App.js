@@ -17,10 +17,12 @@ function App() {
 
   const [habits, setHabits] = useState([]);
   const [activeDay, setActiveDay] = useState(new Date());
-  const [currentUser, setCurrentUser] = useState(null)
+  const [currentUserHabits, setCurrentUserHabits] = useState(null)
+
+ 
 
 
-  console.log(habits)
+  console.log(currentUserHabits)
 
   /*const user = localStorage.getItem('user')*/
 
@@ -80,17 +82,24 @@ function App() {
 
 
 
+function setUser(currentUser){
+  fetch(`https://habittracker-rvvt.onrender.com/habits/${currentUser}`)
+  .then(resp => resp.json())
+  .then(data => setCurrentUserHabits(data))
+}
+
+console.log(currentUserHabits)
 
   return (
      <>
 
       <Navigation />
         <Routes>
-          <Route path="/AddHabit" element={<HabitForm habits={habits} updateHabitList={updateHabitList} />} />
+          <Route path="/AddHabit" element={<HabitForm habits={habits} updateHabitList={updateHabitList} currentUserHabits={currentUserHabits}/>} />
           <Route exact path="/WeekData" element ={<WeekData changeWeek={changeWeek}  activeDay={activeDay} habits={habits}/>} />
           <Route exact path="/MonthlyData" element ={<MonthlyData setActiveDay={setActiveDay} changeWeek={changeWeek}  changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateCompletedHabits={updateCompletedHabits} habits={habits}/>} />
           <Route exact path="/" element ={<HabitContainer changeWeek={changeWeek}  changeWeekHandle={changeWeekHandle} activeDay={activeDay} removeHabit={removeHabit} updateCompletedHabits={updateCompletedHabits} habits={habits}/>} />
-          <Route exact path="/Login" element ={<Login habits={habits} />} />
+          <Route exact path="/Login" element ={<Login habits={habits} setUser={setUser}/>} />
           <Route exact path="/NewUserForm" element ={<NewUserForm updateHabitList={updateHabitList} habits={habits} />} />
         </Routes>
 

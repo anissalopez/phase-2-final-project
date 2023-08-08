@@ -2,25 +2,19 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button, Container, Form }from 'react-bootstrap'
 
-function HabitForm({ updateHabitList, user, habits}){
-    const [form, setForm] = useState({
-        habit: ""
-    });
+function HabitForm({ updateHabitList, currentUserHabits, habits}){
+    const [habit, setHabit] = useState("")
 
 
-    console.log(user)
+    console.log(currentUserHabits)
 
-    const [habit, setHabit] = useState("");
+
 
     const navigate = useNavigate();
 
     function handleSubmit(e){
 
-        console.log(user)
-
-        const habitList = [...user.habits]
-
-        console.log(updateHabitList)
+        console.log(currentUserHabits)
 
  
         e.preventDefault();
@@ -48,7 +42,7 @@ function HabitForm({ updateHabitList, user, habits}){
             <Form.Group  controlId="habitForm">
             <Form.Label className="mb-4 fs-4">Add Habit</Form.Label>
         
-            <Form.Control className="mb-4" type="text" placeholder="please enter a habit" value={habit} onChange={(e) => setHabit(e.target.value)}/>
+            <Form.Control className="mb-4" type="text" placeholder="please enter a habit" onChange={(e) => setHabit(e.target.value)}/>
             <Button variant="primary" type="submit">
             Submit
             </Button>
