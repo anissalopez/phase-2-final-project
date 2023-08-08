@@ -53,11 +53,11 @@ function Login({ }){
             <Form.Control className="mb-4" type="text" placeholder="please enter a username" value={username} onChange={(e)=>setUserName(e.target.value)}/>
             <Form.Label className="mb-4 fs-4">Password </Form.Label>
             <Form.Control className="mb-4" type="text" placeholder="please enter a password" value={password} onChange={(e)=>setPassWord(e.target.value)}/>
-            <Button variant="primary" type="submit">
+            <Button variant="primary" className="p-2" type="submit">
             Submit
             </Button>
-            <Button variant="primary" onClick={newUserHandler}>
-            New User
+            <Button variant="primary" className="p-2 signUp" onClick={newUserHandler}>
+            Sign Up
            </Button>
         </Form>
         </Container>

@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import {Form, Container, Button} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+import NavBar from "./NavBar"
 
 function NewUserForm({ updateHabitList, habits }){
 
@@ -86,20 +87,23 @@ function handleSubmit(e){
 
 
     return(
-        <Container id="formContainer" className="d-grid h-75">
-        <Form id="userForm" className="text-center w-60" onSubmit={handleSubmit}>
+        <Container id="formContainer" className="mt-5 d-grid h-75">
+        <NavBar ></NavBar>
+        <h2 className="mt-5">Welcome to Habit App</h2>
+        <Form id="userForm" className="mt-3 text-center w-60" onSubmit={handleSubmit}>
             <Form.Label className="mb-4 fs-4">First Name </Form.Label>
-            <Form.Control className="mb-4" type="text" placeholder="please enter your first name" value={form.firstName} name="firstName" onChange={handleChange}/>
+            <Form.Control className="mb-4" type="text" placeholder="enter first name" value={form.firstName} name="firstName" onChange={handleChange}/>
             <Form.Label className="mb-4 fs-4">Last Name </Form.Label>
-            <Form.Control className="mb-4" type="text" placeholder="please enter your last name" value={form.lastName} name="lastName" onChange={handleChange}/>
+            <Form.Control className="mb-4" type="text" placeholder="please last name" value={form.lastName} name="lastName" onChange={handleChange}/>
             <Form.Label className="mb-4 fs-4">User Name </Form.Label>
-            <Form.Control className="mb-4" type="username" placeholder="please enter a username" value={form.id} name="id" onChange={handleChange}/>
+            <Form.Control className="mb-4" type="username" placeholder="please username" value={form.id} name="id" onChange={handleChange}/>
             <Form.Label className="mb-4 fs-4">Password </Form.Label>
-            <Form.Control className="mb-4" type="password" placeholder="please enter a password" value={form.password} name="password" onChange={handleChange}/>
+            <Form.Control className="mb-4" type="password" placeholder="enter password" value={form.password} name="password" onChange={handleChange}/>
             <Button variant="primary" type="submit">
             Submit
             </Button>
         </Form>
+        <p>Have an account? <button>Login</button></p>
         </Container>
     )
 }
